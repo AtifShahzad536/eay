@@ -12,30 +12,30 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
   }
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#4F46E5] backdrop-blur-md border-b border-indigo-600 shadow-lg shadow-indigo-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          
+
           {/* Logo Section */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavClick('Home')}>
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#DB2777] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-purple-200">
+            <div className="w-11 h-11 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white font-black text-lg shadow-md">
               ES
             </div>
-            <span className="text-2xl font-black tracking-tight text-[#4F46E5]">
+            <span className="text-xl font-black tracking-tight text-white">
               EAY SPORTS
             </span>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center bg-gray-50/80 p-1.5 rounded-full border border-gray-100">
+          <nav className="hidden md:flex items-center bg-white/10 p-1 rounded-full border border-white/15">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.name)}
-                className={`px-6 py-2 rounded-full text-[13px] font-bold transition-all duration-300 ${
+                className={`px-5 py-2 rounded-full text-[13px] font-bold transition-all duration-300 ${
                   activeTab === link.name
-                    ? 'bg-[#4F46E5] text-white shadow-md'
-                    : 'text-gray-500 hover:text-gray-800'
+                    ? 'bg-white text-[#4F46E5] shadow-md'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {link.name}
@@ -44,24 +44,24 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
           </nav>
 
           {/* Right Icons & CTA */}
-          <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-5 text-gray-500">
-              <button onClick={onSearchOpen} className="hover:text-[#4F46E5] transition-colors"><Search size={22} /></button>
-              <button onClick={onCartOpen} className="relative hover:text-[#4F46E5] transition-colors">
-                <ShoppingCart size={22} />
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">3</span>
+          <div className="hidden md:flex items-center gap-5">
+            <div className="flex items-center gap-4 text-white/75">
+              <button onClick={onSearchOpen} className="hover:text-white transition-colors"><Search size={21} /></button>
+              <button onClick={onCartOpen} className="relative hover:text-white transition-colors">
+                <ShoppingCart size={21} />
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4.5 h-4.5 w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#4F46E5]">3</span>
               </button>
-              <button onClick={onProfileOpen} className="hover:text-[#4F46E5] transition-colors"><User size={22} /></button>
+              <button onClick={onProfileOpen} className="hover:text-white transition-colors"><User size={21} /></button>
             </div>
-            <button className="bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white px-7 py-3 rounded-full font-bold text-[13px] shadow-lg shadow-blue-100 hover:scale-105 transition-transform">
+            <button className="bg-white text-[#4F46E5] px-6 py-2.5 rounded-full font-bold text-[13px] shadow-md hover:bg-indigo-50 hover:scale-105 transition-all">
               Dealer Portal
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden">
-            <button onClick={toggleMenu} className="text-gray-500">
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <button onClick={toggleMenu} className="text-white">
+              {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </div>
@@ -74,24 +74,24 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+            className="md:hidden bg-[#4338CA] border-t border-white/10 overflow-hidden"
           >
-            <div className="px-4 py-6 space-y-3">
+            <div className="px-4 py-6 space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block px-4 py-3 rounded-xl text-lg font-semibold text-gray-600 hover:bg-gray-50 hover:text-[#4F46E5]"
+                  className="block px-4 py-3 rounded-xl text-base font-semibold text-white/80 hover:bg-white/10 hover:text-white transition-all"
                 >
                   {link.name}
                 </a>
               ))}
-              <div className="pt-4 border-t border-gray-100 flex gap-6 px-4">
-                <Search size={24} className="text-gray-500" />
-                <button onClick={onCartOpen}><ShoppingCart size={24} className="text-gray-500 hover:text-[#4F46E5] transition-colors" /></button>
-                <User size={24} className="text-gray-500" />
+              <div className="pt-4 border-t border-white/10 flex gap-6 px-4">
+                <button onClick={onSearchOpen}><Search size={22} className="text-white/70 hover:text-white transition-colors" /></button>
+                <button onClick={onCartOpen}><ShoppingCart size={22} className="text-white/70 hover:text-white transition-colors" /></button>
+                <button onClick={onProfileOpen}><User size={22} className="text-white/70 hover:text-white transition-colors" /></button>
               </div>
-              <button className="w-full mt-4 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white py-4 rounded-xl font-bold shadow-lg">
+              <button className="w-full mt-3 bg-white text-[#4F46E5] py-3.5 rounded-xl font-bold shadow-md hover:bg-indigo-50 transition-all">
                 Dealer Portal
               </button>
             </div>
