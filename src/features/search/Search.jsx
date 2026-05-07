@@ -81,28 +81,28 @@ export const Search = ({ isOpen, onClose }) => {
             className="fixed top-0 left-0 right-0 z-50 bg-white shadow-2xl shadow-indigo-100/50"
           >
             {/* Search Bar */}
-            <div className="max-w-3xl mx-auto px-6 py-6">
-              <div className="flex items-center gap-4 bg-gray-50 border-2 border-gray-100 focus-within:border-[#4F46E5] focus-within:bg-white rounded-lg px-5 py-4 transition-all shadow-sm">
-                <SearchIcon size={22} className="text-[#4F46E5] flex-shrink-0" />
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+              <div className="flex items-center gap-2 sm:gap-4 bg-gray-50 border-2 border-gray-100 focus-within:border-[#4F46E5] focus-within:bg-white rounded-lg px-3 sm:px-5 py-2.5 sm:py-4 transition-all shadow-sm">
+                <SearchIcon size={20} className="text-[#4F46E5] flex-shrink-0" />
                 <input
                   ref={inputRef}
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search jerseys, hoodies, shorts..."
-                  className="flex-1 bg-transparent text-slate-800 font-semibold text-lg placeholder:text-slate-400 focus:outline-none"
+                  placeholder="Search jerseys..."
+                  className="flex-1 bg-transparent text-slate-800 font-semibold text-sm sm:text-lg placeholder:text-slate-400 focus:outline-none"
                 />
                 {query && (
                   <button
                     onClick={() => setQuery('')}
-                    className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 hover:bg-red-100 hover:text-red-500 transition-all"
+                    className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 hover:bg-red-100 hover:text-red-500 transition-all"
                   >
-                    <X size={14} />
+                    <X size={12} />
                   </button>
                 )}
                 <button
                   onClick={onClose}
-                  className="ml-2 px-4 py-1.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-800 hover:bg-gray-200 transition-colors"
+                  className="px-2 sm:px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 hover:bg-gray-200 transition-colors whitespace-nowrap"
                 >
                   Cancel
                 </button>
