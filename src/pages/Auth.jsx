@@ -77,7 +77,7 @@ export const Auth = ({ onLoginSuccess }) => {
       </div>
 
       {/* ─── RIGHT SIDE: Form ─── */}
-      <div className={`w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-24 ${BG.page} relative`}>
+      <div className={`w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-24 xl:p-32 ${BG.page} relative`}>
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}

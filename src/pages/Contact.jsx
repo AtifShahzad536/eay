@@ -37,7 +37,7 @@ export const Contact = () => {
           <div className="absolute top-10 left-20 w-64 h-64 rounded-full bg-white blur-3xl" />
           <div className="absolute bottom-0 right-10 w-96 h-96 rounded-full bg-purple-400 blur-3xl" />
         </div>
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <div className={`${SPACING.container} max-w-4xl text-center relative z-10`}>
           <motion.div {...fadeUp()} className="inline-flex items-center gap-2 bg-white/15 border border-white/20 px-4 py-1.5 rounded-full mb-6">
             <MessageSquare size={14} className="text-white" />
             <span className="text-xs text-white uppercase tracking-widest">Get In Touch</span>
@@ -53,7 +53,7 @@ export const Contact = () => {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
+      <section className={`${SPACING.container} max-w-6xl py-16`}>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {contactInfo.map(({ icon: Icon, title, value, sub }, i) => (
             <motion.div key={title} {...fadeUp(i * 0.1)} className="bg-slate-50 border border-slate-100 rounded-2xl p-5 text-center hover:border-[#4F46E5]/30 hover:shadow-md transition-all group">

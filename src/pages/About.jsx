@@ -40,7 +40,7 @@ export const About = () => {
           <div className="absolute top-10 left-20 w-64 h-64 rounded-full bg-white blur-3xl" />
           <div className="absolute bottom-0 right-10 w-96 h-96 rounded-full bg-purple-400 blur-3xl" />
         </div>
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <div className={`${SPACING.container} max-w-4xl text-center relative z-10`}>
           <motion.div {...fadeUp()} className="inline-flex items-center gap-2 bg-white/15 border border-white/20 px-4 py-1.5 rounded-full mb-6">
             <Users size={14} className="text-white" />
             <span className="text-xs text-white uppercase tracking-widest">Our Story</span>
@@ -57,7 +57,7 @@ export const About = () => {
 
       {/* Stats */}
       <section className="bg-slate-950 py-16">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className={`${SPACING.container} max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-8 text-center`}>
           {stats.map((s, i) => (
             <motion.div key={s.label} {...fadeUp(i * 0.1)}>
               <div className="text-[36px] md:text-[48px] text-white mb-1">{s.value}</div>
@@ -68,7 +68,7 @@ export const About = () => {
       </section>
 
       {/* Mission */}
-      <section className="py-24 px-4 max-w-6xl mx-auto">
+      <section className={`py-24 ${SPACING.container} max-w-6xl`}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <motion.div {...fadeUp()}>
             <span className="text-xs text-[#4F46E5] uppercase tracking-widest mb-3 block">Our Mission</span>
@@ -98,7 +98,7 @@ export const About = () => {
 
       {/* Team */}
       <section className="py-20 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className={`${SPACING.container} max-w-5xl`}>
           <motion.div {...fadeUp()} className="text-center mb-14">
             <span className="text-xs text-[#4F46E5] uppercase tracking-widest mb-3 block">The People Behind EAY</span>
             <h2 className="text-[32px] md:text-[42px] text-slate-700">Meet Our Team</h2>

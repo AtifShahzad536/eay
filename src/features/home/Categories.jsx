@@ -35,7 +35,7 @@ const categories = [
 export const Categories = () => {
   return (
     <section className="py-24 bg-[#F8F9FF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className={`${SPACING.container} text-center`}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

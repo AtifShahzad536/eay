@@ -102,5 +102,5 @@ export const BTN = {
 export const SPACING = {
   section: 'py-20',
   sectionLg: 'py-24',
-  container: 'max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8',
+  container: 'max-w-[1600px] mx-auto px-4 sm:px-12 lg:px-16 xl:px-24',
 }

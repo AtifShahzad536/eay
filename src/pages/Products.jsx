@@ -6,6 +6,7 @@ import {
   Star, Heart, ShoppingCart, SlidersHorizontal,
   ChevronDown, Sparkles, Search, Grid3x3, List
 } from 'lucide-react'
+import { SPACING } from '../config/theme'
 
 /* ─── DATA ─────────────────────────────────── */
 const ALL_PRODUCTS = [
@@ -230,7 +231,7 @@ export const Products = ({ onNavigate }) => {
       className="pt-28 pb-20 min-h-screen bg-[#F8F9FF]"
     >
       {/* Page Hero */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+      <div className={`${SPACING.container} mb-10`}>
         <div className="flex flex-col items-center text-center mb-10">
           <span className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-indigo-100 shadow-sm text-sm text-indigo-500 mb-5">
             <Sparkles size={15} className="text-yellow-500" />

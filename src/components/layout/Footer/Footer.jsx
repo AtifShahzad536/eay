@@ -1,10 +1,10 @@
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
-import { COLORS, TEXT, BTN } from '../../../config/theme'
+import { COLORS, TEXT, BTN, SPACING } from '../../../config/theme'
 
 export const Footer = () => (
   <footer className="bg-white pt-20 pb-10 border-t border-gray-100">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className={`${SPACING.container}`}>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
 
         {/* Brand & Contact */}

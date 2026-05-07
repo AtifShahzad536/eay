@@ -51,7 +51,7 @@ export const Hero = () => {
       </div>
 
       {/* Text Content — bottom-left, compact glass card */}
-      <div className="absolute bottom-14 sm:bottom-16 left-3 sm:left-10 z-10 max-w-[92%] sm:max-w-lg">
+      <div className="absolute bottom-14 sm:bottom-16 left-3 sm:left-[5%] lg:left-[8%] xl:left-[12%] z-10 max-w-[92%] sm:max-w-lg">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

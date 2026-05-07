@@ -1,7 +1,7 @@
 import { useHeader } from './useHeader'
 import { Search, ShoppingCart, User, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HEADER, BTN, GRADIENTS } from '../../../config/theme'
+import { HEADER, BTN, GRADIENTS, SPACING } from '../../../config/theme'
 
 export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen, onHomeOpen, onAboutOpen, onContactOpen }) => {
   const { activeTab, setActiveTab, navLinks, isMenuOpen, toggleMenu } = useHeader()
@@ -16,7 +16,7 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 ${HEADER.bg} backdrop-blur-md border-b ${HEADER.border} shadow-lg shadow-indigo-900/30`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={`${SPACING.container}`}>
         <div className="flex justify-between items-center h-20">
 
           {/* Logo Section */}
