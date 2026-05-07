@@ -9,9 +9,9 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
   const handleNavClick = (linkName) => {
     setActiveTab(linkName)
     if (linkName === 'Products') onProductsOpen?.()
-    if (linkName === 'Home')     onHomeOpen?.()
-    if (linkName === 'About')    onAboutOpen?.()
-    if (linkName === 'Contact')  onContactOpen?.()
+    if (linkName === 'Home') onHomeOpen?.()
+    if (linkName === 'About') onAboutOpen?.()
+    if (linkName === 'Contact') onContactOpen?.()
   }
 
   return (
@@ -21,10 +21,10 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
 
           {/* Logo Section */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavClick('Home')}>
-            <div className="w-11 h-11 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white font-black text-lg shadow-md">
+            <div className="w-11 h-11 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white font-[600] text-lg shadow-md">
               ES
             </div>
-            <span className="text-xl font-black tracking-tight text-white">
+            <span className="text-xl font-[500] tracking-tight text-white">
               EAY SPORTS
             </span>
           </div>
@@ -35,11 +35,10 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.name)}
-                className={`px-5 py-2 rounded-full text-[13px] font-medium transition-all duration-300 ${
-                  activeTab === link.name
-                    ? 'bg-white text-[#4F46E5] shadow-md'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
-                }`}
+                className={`px-5 py-2 rounded-full text-[13px] font-medium transition-all duration-300 ${activeTab === link.name
+                  ? 'bg-white text-[#4F46E5] shadow-md'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
+                  }`}
               >
                 {link.name}
               </button>
