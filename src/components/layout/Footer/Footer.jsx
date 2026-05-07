@@ -70,13 +70,13 @@ export const Footer = () => (
             </button>
           ))}
         </div>
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full max-w-md">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full max-w-md px-4 sm:px-0">
           <input
             type="email"
             placeholder="Enter your email"
-            className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+            className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 sm:px-6 sm:py-4 text-xs sm:text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
           />
-          <button className={`${BTN.primary} !px-6 !py-3 sm:!px-8 sm:!py-4 rounded-lg text-sm sm:text-base shadow-xl shadow-blue-100 hover:scale-105 transition-transform`}>
+          <button className={`${BTN.primary} !px-5 !py-2.5 sm:!px-8 sm:!py-4 rounded-lg text-xs sm:text-base shadow-xl shadow-blue-100 hover:scale-105 transition-transform`}>
             Subscribe
           </button>
         </div>
