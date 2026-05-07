@@ -58,24 +58,25 @@ export const Footer = () => (
       {/* Bottom: Socials + Newsletter */}
       <div className="flex flex-col lg:flex-row items-center justify-between pt-10 border-t border-gray-100 gap-8">
         <div className="flex items-center gap-4">
+          {/* Social Icons — slightly smaller on mobile */}
           {[
-            { icon: <FaFacebookF size={18} />, bg: 'bg-[#0EA5E9]' },
-            { icon: <FaTwitter size={18} />,   bg: 'bg-[#D946EF]' },
-            { icon: <FaInstagram size={18} />, bg: 'bg-[#F97316]' },
-            { icon: <FaLinkedinIn size={18} />,bg: 'bg-[#10B981]' },
+            { icon: <FaFacebookF />, bg: 'bg-[#0EA5E9]' },
+            { icon: <FaTwitter />,   bg: 'bg-[#D946EF]' },
+            { icon: <FaInstagram />, bg: 'bg-[#F97316]' },
+            { icon: <FaLinkedinIn />,bg: 'bg-[#10B981]' },
           ].map((s, i) => (
-            <button key={i} className={`w-11 h-11 rounded-lg ${s.bg} text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg`}>
+            <button key={i} className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg ${s.bg} text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg [&>svg]:w-4 sm:[&>svg]:w-[18px]`}>
               {s.icon}
             </button>
           ))}
         </div>
-        <div className="flex items-center gap-3 w-full max-w-md">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full max-w-md">
           <input
             type="email"
             placeholder="Enter your email"
-            className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-6 py-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+            className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
           />
-          <button className={`${BTN.primary} !px-8 !py-4 rounded-lg shadow-xl shadow-blue-100 hover:scale-105 transition-transform`}>
+          <button className={`${BTN.primary} !px-6 !py-3 sm:!px-8 sm:!py-4 rounded-lg text-sm sm:text-base shadow-xl shadow-blue-100 hover:scale-105 transition-transform`}>
             Subscribe
           </button>
         </div>
