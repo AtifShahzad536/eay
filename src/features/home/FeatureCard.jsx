@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
+import { GRADIENTS, COLORS } from '../../config/theme'
 
 export const FeatureCard = () => {
   return (
@@ -20,7 +21,7 @@ export const FeatureCard = () => {
         className="relative w-full max-w-[320px] aspect-square group cursor-pointer"
       >
         {/* Main Gradient Card */}
-        <div className="w-full h-full bg-gradient-to-br from-[#4F46E5] via-[#7C3AED] to-[#DB2777] rounded-[2.5rem] shadow-2xl shadow-indigo-100/50 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+        <div className={`w-full h-full ${GRADIENTS.button} rounded-[2.5rem] shadow-2xl shadow-indigo-100/50 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]`}>
            {/* Inner glow effect */}
            <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px] opacity-40" />
            

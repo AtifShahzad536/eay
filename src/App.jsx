@@ -4,8 +4,11 @@ import { Footer } from './components/layout/Footer/Footer'
 import SmoothScroll from './components/common/SmoothScroll/SmoothScroll'
 
 // Pages
-import { Home }     from './pages/Home'
+import { Home }    from './pages/Home'
 import { Products } from './pages/Products'
+import { About }   from './pages/About'
+import { Contact } from './pages/Contact'
+import { ProductDetails } from './pages/ProductDetails'
 
 // Overlays (Features)
 import { Cart }    from './features/cart/Cart'
@@ -33,6 +36,8 @@ function App() {
           onSearchOpen={() => setIsSearchOpen(true)}
           onProductsOpen={() => navigateTo('products')}
           onHomeOpen={() => navigateTo('home')}
+          onAboutOpen={() => navigateTo('about')}
+          onContactOpen={() => navigateTo('contact')}
         />
 
         {/* Overlay Pages */}
@@ -43,7 +48,10 @@ function App() {
         {/* Routed Pages */}
         <main>
           {currentPage === 'home'     && <Home />}
-          {currentPage === 'products' && <Products />}
+          {currentPage === 'products' && <Products onNavigate={navigateTo} />}
+          {currentPage === 'about'    && <About />}
+          {currentPage === 'contact'  && <Contact />}
+          {currentPage === 'product-details' && <ProductDetails onNavigate={navigateTo} />}
         </main>
 
         <Footer />

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react'
+import { COLORS, BTN, GRADIENTS } from '../../config/theme'
 
 const DUMMY_ITEMS = [
   {
@@ -67,8 +68,8 @@ export const Cart = ({ isOpen, onClose }) => {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-[#4F46E5]/5 to-[#7C3AED]/5">
               <div>
-                <h2 className="text-2xl font-black text-slate-800">Shopping Cart</h2>
-                <p className="text-sm text-slate-400 font-medium mt-0.5">
+                <h2 className="text-2xl text-slate-800">Shopping Cart</h2>
+                <p className="text-sm text-slate-400 mt-0.5">
                   {DUMMY_ITEMS.length} items in your cart
                 </p>
               </div>
@@ -98,12 +99,12 @@ export const Cart = ({ isOpen, onClose }) => {
                       className="w-24 h-24 rounded-xl object-cover shadow-sm flex-shrink-0"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="font-bold text-slate-800 text-[15px]">{item.name}</p>
+                      <p className="text-slate-800 text-[15px]">{item.name}</p>
                       <div className="flex flex-wrap gap-1.5 mt-2">
                         {item.tags.map((t) => (
                           <span
                             key={t.label}
-                            className="text-[11px] font-semibold px-2.5 py-1 bg-indigo-50 text-indigo-600 rounded-full"
+                            className="text-[11px] px-2.5 py-1 bg-indigo-50 text-indigo-600 rounded-full"
                           >
                             {t.label}
                           </span>
@@ -116,14 +117,14 @@ export const Cart = ({ isOpen, onClose }) => {
                           <button className="w-7 h-7 rounded-full flex items-center justify-center text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
                             <Minus size={14} />
                           </button>
-                          <span className="w-6 text-center text-sm font-bold text-slate-800">{item.qty}</span>
+                          <span className="w-6 text-center text-sm text-slate-800">{item.qty}</span>
                           <button className="w-7 h-7 rounded-full flex items-center justify-center text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
                             <Plus size={14} />
                           </button>
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <span className="font-black text-[#4F46E5] text-lg">
+                          <span className={`text-[${COLORS.primary}] text-lg`}>
                             ${(item.price * item.qty).toFixed(2)}
                           </span>
                           <button className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors">
@@ -139,7 +140,7 @@ export const Cart = ({ isOpen, onClose }) => {
 
             {/* Order Summary */}
             <div className="px-6 py-5 border-t border-gray-100 bg-white">
-              <h3 className="text-lg font-bold text-slate-800 mb-4">Order Summary</h3>
+              <h3 className="text-lg text-slate-800 mb-4">Order Summary</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between text-slate-500">
                   <span>Subtotal</span>
@@ -153,20 +154,20 @@ export const Cart = ({ isOpen, onClose }) => {
                   <span>Tax (8%)</span>
                   <span className="font-semibold text-slate-700">${tax.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-base font-black text-slate-800 pt-3 border-t border-gray-100">
+                <div className="flex justify-between text-base text-slate-800 pt-3 border-t border-gray-100">
                   <span>Total</span>
-                  <span className="text-[#4F46E5]">${total.toFixed(2)}</span>
+                  <span className={`text-[${COLORS.primary}]`}>${total.toFixed(2)}</span>
                 </div>
               </div>
 
               <div className="mt-5 flex flex-col gap-3">
-                <button className="w-full bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white py-4 rounded-lg font-bold text-[15px] shadow-lg shadow-indigo-200/50 hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                <button className={`${BTN.primary} w-full !py-4 rounded-lg text-[15px] flex items-center justify-center gap-2`}>
                   Proceed to Checkout
                   <ArrowRight size={18} />
                 </button>
                 <button
                   onClick={onClose}
-                  className="w-full py-4 rounded-lg font-bold text-[15px] text-slate-600 bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-lg text-[15px] text-slate-600 bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
                 >
                   <ShoppingBag size={18} />
                   Continue Shopping

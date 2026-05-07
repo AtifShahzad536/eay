@@ -4,6 +4,7 @@ import {
   X, User, Package, Heart, Settings, LogOut,
   Camera, Save, ChevronRight, Truck, CheckCircle2, Clock
 } from 'lucide-react'
+import { COLORS, BTN, GRADIENTS } from '../../config/theme'
 
 const SAVED_DESIGNS = [
   {
@@ -99,7 +100,7 @@ export const Profile = ({ isOpen, onClose }) => {
                     <Camera size={13} />
                   </button>
                 </div>
-                <p className="mt-4 font-black text-slate-800 text-lg">John Doe</p>
+                <p className="mt-4 text-slate-800 text-lg">John Doe</p>
                 <p className="text-sm text-slate-400 font-medium">john.doe@email.com</p>
               </div>
 
@@ -109,7 +110,7 @@ export const Profile = ({ isOpen, onClose }) => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(key)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all ${
                       activeTab === key
                         ? 'bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white shadow-lg shadow-indigo-200/50'
                         : 'text-slate-500 hover:bg-gray-50 hover:text-slate-800'
@@ -123,7 +124,7 @@ export const Profile = ({ isOpen, onClose }) => {
               </nav>
 
               {/* Logout */}
-              <button className="flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm text-red-500 hover:bg-red-50 transition-colors mt-4">
+              <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-colors mt-4">
                 <LogOut size={17} />
                 Logout
               </button>
@@ -134,7 +135,7 @@ export const Profile = ({ isOpen, onClose }) => {
 
               {/* Page Header */}
               <div className="mb-8">
-                <h1 className="text-3xl font-black text-slate-800">My Account</h1>
+                <h1 className="text-3xl text-slate-800">My Account</h1>
                 <p className="text-slate-400 font-medium mt-1">Manage your profile and orders</p>
               </div>
 
@@ -145,7 +146,7 @@ export const Profile = ({ isOpen, onClose }) => {
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm"
                 >
-                  <h2 className="text-xl font-black text-slate-800 mb-6">Profile Information</h2>
+                  <h2 className="text-xl text-slate-800 mb-6">Profile Information</h2>
                   <div className="grid grid-cols-2 gap-5">
                     {[
                       { label: 'First Name', value: 'John',               type: 'text' },
@@ -154,7 +155,7 @@ export const Profile = ({ isOpen, onClose }) => {
                       { label: 'Phone',      value: '+1 (555) 123-4567',  type: 'tel' },
                     ].map((field) => (
                       <div key={field.label}>
-                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                        <label className="block text-xs text-slate-500 uppercase tracking-wider mb-2">
                           {field.label}
                         </label>
                         <input
@@ -166,11 +167,11 @@ export const Profile = ({ isOpen, onClose }) => {
                     ))}
                   </div>
                   <div className="mt-8 flex items-center gap-4">
-                    <button className="bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white px-8 py-3.5 rounded-lg font-bold text-sm shadow-lg shadow-indigo-200/50 hover:scale-[1.02] transition-transform flex items-center gap-2">
+                    <button className={`${BTN.primary} !px-8 !py-3.5 text-sm flex items-center gap-2`}>
                       <Save size={16} />
                       Save Changes
                     </button>
-                    <button className="px-8 py-3.5 rounded-lg font-bold text-sm text-slate-500 bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors">
+                    <button className="px-8 py-3.5 rounded-lg text-sm text-slate-500 bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors">
                       Cancel
                     </button>
                   </div>
@@ -184,7 +185,7 @@ export const Profile = ({ isOpen, onClose }) => {
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-4"
                 >
-                  <h2 className="text-xl font-black text-slate-800 mb-6">Recent Orders</h2>
+                  <h2 className="text-xl text-slate-800 mb-6">Recent Orders</h2>
                   {ORDERS.map((order) => {
                     const cfg = STATUS_CONFIG[order.status]
                     return (
@@ -193,16 +194,16 @@ export const Profile = ({ isOpen, onClose }) => {
                         className="bg-white rounded-lg px-6 py-5 border border-gray-100 shadow-sm flex items-center justify-between hover:border-indigo-100 hover:shadow-md transition-all"
                       >
                         <div>
-                          <p className="font-black text-slate-800">Order {order.id}</p>
+                          <p className="text-slate-800">Order {order.id}</p>
                           <p className="text-sm text-slate-400 mt-0.5">
                             {order.date} · {order.items} items
                           </p>
                         </div>
                         <div className="flex items-center gap-4">
-                          <span className="text-lg font-black text-[#4F46E5]">
+                          <span className={`text-lg text-[${COLORS.primary}]`}>
                             ${order.price.toFixed(2)}
                           </span>
-                          <span className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold ${cfg.color}`}>
+                          <span className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs ${cfg.color}`}>
                             {cfg.icon}
                             {order.status}
                           </span>
@@ -220,7 +221,7 @@ export const Profile = ({ isOpen, onClose }) => {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <h2 className="text-xl font-black text-slate-800 mb-6">Saved Designs</h2>
+                  <h2 className="text-xl text-slate-800 mb-6">Saved Designs</h2>
                   <div className="grid grid-cols-2 gap-5">
                     {SAVED_DESIGNS.map((design) => (
                       <div
@@ -236,7 +237,7 @@ export const Profile = ({ isOpen, onClose }) => {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         </div>
                         <div className="px-5 py-4">
-                          <p className="font-black text-slate-800">{design.name}</p>
+                          <p className="text-slate-800">{design.name}</p>
                           <p className="text-xs text-slate-400 mt-1">{design.date}</p>
                         </div>
                       </div>
@@ -252,7 +253,7 @@ export const Profile = ({ isOpen, onClose }) => {
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm"
                 >
-                  <h2 className="text-xl font-black text-slate-800 mb-6">Account Settings</h2>
+                  <h2 className="text-xl text-slate-800 mb-6">Account Settings</h2>
                   <div className="space-y-4">
                     {[
                       { label: 'Email Notifications', desc: 'Receive updates about your orders', enabled: true },
@@ -265,7 +266,7 @@ export const Profile = ({ isOpen, onClose }) => {
                         className="flex items-center justify-between p-5 rounded-lg border border-gray-100 bg-gray-50/50 hover:border-indigo-100 transition-colors"
                       >
                         <div>
-                          <p className="font-bold text-slate-700 text-sm">{setting.label}</p>
+                          <p className="text-slate-700 text-sm">{setting.label}</p>
                           <p className="text-xs text-slate-400 mt-0.5">{setting.desc}</p>
                         </div>
                         <button

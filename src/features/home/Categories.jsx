@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { COLORS, SPACING } from '../../config/theme'
 
 const categories = [
   {
@@ -39,7 +40,7 @@ export const Categories = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-5xl font-black text-slate-800 mb-4"
+          className="text-5xl  text-slate-800 mb-4"
         >
           Shop by Category
         </motion.h2>
@@ -78,10 +79,10 @@ export const Categories = () => {
 
               {/* Content */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6">
-                <h3 className="text-4xl font-black mb-4 tracking-tight drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                <h3 className="text-4xl  mb-4 tracking-tight drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
                   {cat.name}
                 </h3>
-                <div className="bg-white/25 backdrop-blur-md px-6 py-2 rounded-full font-bold text-sm border border-white/30">
+                <div className="bg-white/25 backdrop-blur-md px-6 py-2 rounded-full  text-sm border border-white/30">
                   {cat.count}
                 </div>
               </div>

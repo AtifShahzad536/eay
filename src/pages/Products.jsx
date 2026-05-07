@@ -39,7 +39,7 @@ const FilterSidebar = ({
   const Section = ({ id, title, children }) => (
     <div className="border-b border-slate-100 pb-5 mb-5 last:border-0 last:mb-0">
       <button onClick={() => toggle(id)} className="flex items-center justify-between w-full mb-4 group">
-        <span className="text-[12px] uppercase tracking-[0.15em] font-black text-slate-800 group-hover:text-[#4F46E5] transition-colors">{title}</span>
+        <span className="text-[12px] uppercase tracking-[0.15em] text-slate-500 group-hover:text-[#4F46E5] transition-colors">{title}</span>
         <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${openSections.includes(id) ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence>
@@ -70,11 +70,11 @@ const FilterSidebar = ({
             <div className="w-8 h-8 rounded-lg bg-[#4F46E5]/10 flex items-center justify-center">
               <SlidersHorizontal size={14} className="text-[#4F46E5]" />
             </div>
-            <span className="font-bold text-slate-800 text-base">Filters</span>
+            <span className="text-slate-600 text-base">Filters</span>
           </div>
           <button
             onClick={() => { setPriceRange(200); setMinRating(0); setOnlyCustomizable(false); setSelectedColor(null); setSelectedSize(null); }}
-            className="text-xs font-semibold text-slate-400 hover:text-[#4F46E5] transition-colors"
+            className="text-xs text-slate-400 hover:text-[#4F46E5] transition-colors"
           >
             Clear all
           </button>
@@ -85,7 +85,7 @@ const FilterSidebar = ({
           <div className="px-1 pt-2">
             <div className="flex justify-between items-center mb-4">
               <span className="text-xs font-semibold text-slate-400">$0</span>
-              <span className="text-sm font-bold text-[#4F46E5] bg-[#4F46E5]/10 px-3 py-1 rounded-lg">${priceRange}</span>
+              <span className="text-sm text-[#4F46E5] bg-[#4F46E5]/10 px-3 py-1 rounded-lg">${priceRange}</span>
             </div>
             <input
               type="range" min={0} max={200} value={priceRange}
@@ -119,7 +119,7 @@ const FilterSidebar = ({
               <button
                 key={sz}
                 onClick={() => setSelectedSize(selectedSize === sz ? null : sz)}
-                className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+                className={`px-3 py-1.5 rounded-lg border text-xs transition-all ${
                   selectedSize === sz 
                     ? 'border-[#4F46E5] bg-[#4F46E5] text-white shadow-md' 
                     : 'border-slate-200 text-slate-500 hover:border-[#4F46E5] hover:text-[#4F46E5]'
@@ -147,10 +147,10 @@ const FilterSidebar = ({
                         <Star key={s} size={12} className={s <= r ? 'text-amber-400 fill-amber-400' : 'text-slate-200 fill-slate-200'} />
                       ))}
                     </div>
-                    <span className="text-xs font-medium ml-1">& up</span>
+                    <span className="text-xs ml-1">& up</span>
                   </div>
                 ) : (
-                  <span className="text-xs font-medium">All Ratings</span>
+                  <span className="text-xs">All Ratings</span>
                 )}
               </label>
             ))}
@@ -160,7 +160,7 @@ const FilterSidebar = ({
         {/* Options */}
         <Section id="options" title="Options">
           <label className="flex items-center justify-between cursor-pointer px-1 py-1 group">
-            <span className="text-sm font-semibold text-slate-600 group-hover:text-[#4F46E5] transition-colors">Customizable Only</span>
+            <span className="text-sm text-slate-500 group-hover:text-[#4F46E5] transition-colors">Customizable Only</span>
             <button
               onClick={() => setOnlyCustomizable(!onlyCustomizable)}
               className={`relative w-10 h-5 rounded-full transition-all duration-300 ${onlyCustomizable ? 'bg-[#4F46E5]' : 'bg-slate-200'}`}
@@ -176,7 +176,7 @@ const FilterSidebar = ({
 
 
 /* ─── MAIN EXPORT (page content only) ────── */
-export const Products = () => {
+export const Products = ({ onNavigate }) => {
   const [activeCategory, setActiveCategory] = useState('All')
   const [searchQuery, setSearchQuery]       = useState('')
   const [priceRange, setPriceRange]         = useState(200)
@@ -224,11 +224,11 @@ export const Products = () => {
       {/* Page Hero */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         <div className="flex flex-col items-center text-center mb-10">
-          <span className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-indigo-100 shadow-sm text-sm font-bold text-indigo-600 mb-5">
+          <span className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-indigo-100 shadow-sm text-sm text-indigo-500 mb-5">
             <Sparkles size={15} className="text-yellow-500" />
             {filtered.length} Premium Products
           </span>
-          <h1 className="text-5xl md:text-6xl font-black text-slate-800 mb-3">Our Collection</h1>
+          <h1 className="text-5xl md:text-6xl text-slate-600 mb-3">Our Collection</h1>
           <p className="text-xl text-slate-500">Discover premium custom sportswear</p>
         </div>
 
@@ -241,14 +241,14 @@ export const Products = () => {
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder="Search products..."
-              className="flex-1 bg-transparent text-slate-700 text-sm font-semibold placeholder:text-slate-400 focus:outline-none"
+              className="flex-1 bg-transparent text-slate-600 text-sm placeholder:text-slate-400 focus:outline-none"
             />
           </div>
           <div className="flex items-center gap-3">
             <select
               value={sortBy}
               onChange={e => setSortBy(e.target.value)}
-              className="bg-white border border-gray-200 rounded-lg px-4 py-3.5 text-sm font-bold text-slate-700 focus:outline-none focus:border-[#4F46E5] shadow-sm cursor-pointer"
+              className="bg-white border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-slate-600 focus:outline-none focus:border-[#4F46E5] shadow-sm cursor-pointer"
             >
               {SORT_OPTIONS.map(o => <option key={o}>{o}</option>)}
             </select>
@@ -265,7 +265,7 @@ export const Products = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
+              className={`px-5 py-2.5 rounded-full text-sm transition-all ${
                 activeCategory === cat
                   ? 'bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white shadow-lg shadow-indigo-200'
                   : 'bg-white border border-gray-200 text-slate-600 hover:border-indigo-200 hover:text-[#4F46E5]'
@@ -292,7 +292,7 @@ export const Products = () => {
                 <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Search size={32} className="text-gray-300" />
                 </div>
-                <p className="font-bold text-slate-500 text-lg">No products found</p>
+                <p className="text-slate-500 text-lg">No products found</p>
                 <p className="text-slate-400 text-sm mt-1">Try adjusting your filters</p>
               </div>
             ) : (
@@ -302,7 +302,7 @@ export const Products = () => {
                   : 'flex flex-col gap-4'
                 }>
                   {paginatedProducts.map((product, i) => (
-                    <ProductCard key={product.id} product={product} index={i} view={view} />
+                    <ProductCard key={product.id} product={product} index={i} view={view} onNavigate={onNavigate} />
                   ))}
                 </div>
                 

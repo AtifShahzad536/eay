@@ -1,5 +1,6 @@
 import { Users, Star, Trophy, Clock } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { COLORS, SPACING } from '../../config/theme'
 
 const stats = [
   { icon: <Users size={32} />, label: 'Happy Customers', value: '50K+', color: 'bg-blue-500' },
@@ -10,7 +11,7 @@ const stats = [
 
 export const Stats = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className={`${SPACING.section} bg-white`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
@@ -25,8 +26,8 @@ export const Stats = () => {
               <div className={`w-16 h-16 ${stat.color} text-white rounded-lg flex items-center justify-center mb-6 shadow-lg shadow-gray-200 group-hover:scale-110 transition-transform`}>
                 {stat.icon}
               </div>
-              <h3 className="text-4xl font-black text-slate-800 mb-2">{stat.value}</h3>
-              <p className="text-slate-500 font-medium">{stat.label}</p>
+              <h3 className="text-4xl  text-slate-500 mb-2">{stat.value}</h3>
+              <p className="text-slate-400 font-normal text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
+import { COLORS, TEXT, BTN } from '../../../config/theme'
 
 export const Footer = () => (
   <footer className="bg-white pt-20 pb-10 border-t border-gray-100">
@@ -8,7 +9,7 @@ export const Footer = () => (
 
         {/* Brand & Contact */}
         <div className="lg:col-span-5">
-          <h2 className="text-4xl font-black text-[#4F46E5] mb-6">EAY SPORTS</h2>
+          <h2 className={`text-4xl text-[${COLORS.primary}] mb-6`}>EAY SPORTS</h2>
           <p className="text-gray-500 text-lg leading-relaxed mb-10 max-w-md">
             Your premier destination for custom sportswear. We deliver quality, performance, and style to athletes and teams worldwide.
           </p>
@@ -22,7 +23,7 @@ export const Footer = () => (
                 <div className={`w-12 h-12 rounded-full ${item.bg} flex items-center justify-center text-white shadow-lg`}>
                   {item.icon}
                 </div>
-                <span className="text-gray-700 font-medium text-lg">{item.text}</span>
+                <span className="text-gray-700 text-lg">{item.text}</span>
               </div>
             ))}
           </div>
@@ -36,11 +37,11 @@ export const Footer = () => (
             { title: 'Support',  links: ['Shipping Info', 'Returns', 'Size Guide', 'Terms & Conditions'] },
           ].map(col => (
             <div key={col.title}>
-              <h4 className="text-xl font-bold text-gray-900 mb-8 tracking-tight">{col.title}</h4>
+              <h4 className="text-xl text-gray-800 mb-8 tracking-tight">{col.title}</h4>
               <ul className="space-y-5">
                 {col.links.map(item => (
                   <li key={item}>
-                    <a href="#" className="text-gray-500 hover:text-[#4F46E5] font-medium transition-colors">{item}</a>
+                    <a href="#" className={`text-gray-500 hover:text-[${COLORS.primary}] transition-colors`}>{item}</a>
                   </li>
                 ))}
               </ul>
@@ -69,7 +70,7 @@ export const Footer = () => (
             placeholder="Enter your email"
             className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-6 py-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
           />
-          <button className="bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white px-8 py-4 rounded-lg font-bold shadow-xl shadow-blue-100 hover:scale-105 transition-transform">
+          <button className={`${BTN.primary} !px-8 !py-4 rounded-lg shadow-xl shadow-blue-100 hover:scale-105 transition-transform`}>
             Subscribe
           </button>
         </div>

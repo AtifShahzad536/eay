@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useHero } from './useHero'
+import { GRADIENTS, BTN, COLORS } from '../../config/theme'
 
 const IMAGES = [
   '/images/hero/HXE-Web-Banner-Explore.jpg_v=1.png',
@@ -60,15 +61,15 @@ export const Hero = () => {
           {/* Badge */}
           <div className="flex items-center gap-2 mb-3">
             <Sparkles size={14} className="text-yellow-400 animate-pulse" />
-            <span className="text-[10px] font-bold text-yellow-300 uppercase tracking-widest">
+            <span className="text-[10px]  text-yellow-300 uppercase tracking-widest">
               AI-Powered Design Assistant
             </span>
           </div>
 
           {/* Title — smaller */}
-          <h1 className="text-[26px] sm:text-[36px] font-[900] leading-[1.15] tracking-[-0.03em] mb-2 text-white">
+          <h1 className="text-[26px] sm:text-[36px] font-[600] leading-[1.15] tracking-[-0.03em] mb-2 text-white">
             Create Your{' '}
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className={GRADIENTS.heroText}>
               Perfect Jersey
             </span>
           </h1>
@@ -82,14 +83,14 @@ export const Hero = () => {
           <div className="flex flex-wrap gap-3">
             <button
               onClick={handleStartDesigning}
-              className="group flex items-center gap-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-all"
+              className={`group flex items-center gap-2 ${BTN.primary} text-sm !py-2.5 !px-5`}
             >
               Start Designing
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={handleBrowseCollection}
-              className="px-5 py-2.5 rounded-full font-bold text-sm text-white bg-white/15 border border-white/20 hover:bg-white/25 backdrop-blur-sm transition-all"
+              className={`${BTN.ghost} text-sm !py-2.5 !px-5`}
             >
               Browse Collection
             </button>
@@ -103,9 +104,8 @@ export const Hero = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-1.5 transition-all duration-400 rounded-full ${
-              currentSlide === index ? 'w-8 bg-white' : 'w-2 bg-white/40'
-            }`}
+            className={`h-1.5 transition-all duration-400 rounded-full ${currentSlide === index ? 'w-8 bg-white' : 'w-2 bg-white/40'
+              }`}
           />
         ))}
       </div>
