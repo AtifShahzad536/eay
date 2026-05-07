@@ -35,7 +35,7 @@ export const Footer = () => (
         </div>
 
         {/* Links */}
-        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
           {[
             { title: 'Company',  links: ['About Us', 'Contact', 'FAQ', 'Careers'] },
             { title: 'Products', links: ['Custom Sportswear', 'Custom Builder', 'Bulk Orders', 'Categories'] },
