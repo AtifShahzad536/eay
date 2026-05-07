@@ -80,20 +80,23 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
           >
             <div className="px-4 py-6 space-y-2">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
-                  className="block px-4 py-3 rounded-xl text-base font-medium text-white/80 hover:bg-white/10 hover:text-white transition-all"
+                  onClick={() => {
+                    handleNavClick(link.name)
+                    toggleMenu()
+                  }}
+                  className="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-white/80 hover:bg-white/10 hover:text-white transition-all"
                 >
                   {link.name}
-                </a>
+                </button>
               ))}
               <div className="pt-4 border-t border-white/10 flex gap-6 px-4">
-                <button onClick={onSearchOpen}><Search size={22} className="text-white/70 hover:text-white transition-colors" /></button>
-                <button onClick={onCartOpen}><ShoppingCart size={22} className="text-white/70 hover:text-white transition-colors" /></button>
-                <button onClick={onProfileOpen}><User size={22} className="text-white/70 hover:text-white transition-colors" /></button>
+                <button onClick={() => { onSearchOpen?.(); toggleMenu(); }}><Search size={22} className="text-white/70 hover:text-white transition-colors" /></button>
+                <button onClick={() => { onCartOpen?.(); toggleMenu(); }}><ShoppingCart size={22} className="text-white/70 hover:text-white transition-colors" /></button>
+                <button onClick={() => { onProfileOpen?.(); toggleMenu(); }}><User size={22} className="text-white/70 hover:text-white transition-colors" /></button>
               </div>
-              <button className="w-full mt-3 bg-white text-[#4F46E5] py-3.5 rounded-xl font-medium shadow-md hover:bg-indigo-50 transition-all">
+              <button className="w-full mt-3 bg-white text-[#4F46E5] py-3 rounded-xl font-medium shadow-md hover:bg-indigo-50 transition-all text-sm">
                 Dealer Portal
               </button>
             </div>

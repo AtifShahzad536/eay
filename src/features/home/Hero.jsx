@@ -26,7 +26,7 @@ export const Hero = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length)
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-slate-950">
+    <section className="relative h-[380px] sm:min-h-screen overflow-hidden bg-slate-950">
 
       {/* Full-Screen Slider — No overlay, fully visible images */}
       <div className="absolute inset-0 z-0">
@@ -51,12 +51,12 @@ export const Hero = () => {
       </div>
 
       {/* Text Content — bottom-left, compact glass card */}
-      <div className="absolute bottom-16 left-4 sm:left-10 z-10 max-w-lg">
+      <div className="absolute bottom-14 sm:bottom-16 left-3 sm:left-10 z-10 max-w-[92%] sm:max-w-lg">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-5"
+          className="bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl p-3 sm:px-6 sm:py-5"
         >
           {/* Badge */}
           <div className="flex items-center gap-2 mb-3">
@@ -67,30 +67,30 @@ export const Hero = () => {
           </div>
 
           {/* Title — smaller */}
-          <h1 className="text-[26px] sm:text-[36px] font-[600] leading-[1.15] tracking-[-0.03em] mb-2 text-white">
+          <h1 className="text-[20px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-[600] leading-[1.15] tracking-[-0.03em] mb-1 sm:mb-2 text-white">
             Create Your{' '}
             <span className={GRADIENTS.heroText}>
               Perfect Jersey
             </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-[13px] sm:text-[14px] text-white/75 leading-relaxed mb-5">
+          {/* Subtitle — hidden on mobile to save space */}
+          <p className="hidden sm:block text-[14px] text-white/75 leading-relaxed mb-5">
             Premium sportswear designed by you — fast delivery &amp; top quality.
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={handleStartDesigning}
-              className={`group flex items-center gap-2 ${BTN.primary} text-sm !py-2.5 !px-5`}
+              className={`group flex items-center gap-1.5 ${BTN.primary} !text-[11px] sm:!text-sm !py-2 sm:!py-2.5 !px-3.5 sm:!px-5 rounded-lg sm:rounded-full whitespace-nowrap`}
             >
               Start Designing
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={handleBrowseCollection}
-              className={`${BTN.ghost} text-sm !py-2.5 !px-5`}
+              className={`${BTN.ghost} !text-[11px] sm:!text-sm !py-2 sm:!py-2.5 !px-3.5 sm:!px-5 rounded-lg sm:rounded-full whitespace-nowrap`}
             >
               Browse Collection
             </button>

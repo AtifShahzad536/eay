@@ -27,8 +27,8 @@ const CATEGORIES   = ['All', 'Jerseys', 'T-Shirts', 'Hoodies', 'Shorts', 'Tracks
 const SORT_OPTIONS = ['Featured', 'Price: Low to High', 'Price: High to Low', 'Top Rated', 'Most Reviews']
 
 
-/* ─── FILTER SIDEBAR ────────────────────── */
 const FilterSidebar = ({
+  isMobile, onClose,
   priceRange, setPriceRange, minRating, setMinRating, 
   onlyCustomizable, setOnlyCustomizable,
   selectedColor, setSelectedColor, selectedSize, setSelectedSize
@@ -62,22 +62,29 @@ const FilterSidebar = ({
   const AVAILABLE_SIZES  = ['XS','S','M','L','XL','XXL', 'One Size']
 
   return (
-    <aside className="w-[280px] min-w-[280px]">
-      <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-xl shadow-slate-200/20 sticky top-28">
+    <aside className={`${isMobile ? 'fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm' : 'w-[280px] min-w-[280px]'} transition-all duration-300`}>
+      <div className={`${isMobile ? 'absolute bottom-0 left-0 w-full bg-white rounded-t-[32px] p-6 pb-20 max-h-[90vh] overflow-y-auto shadow-2xl scrollbar-hide' : 'bg-white rounded-2xl border border-slate-100 p-6 shadow-xl shadow-slate-200/20 sticky top-28'}`}>
         {/* Header */}
         <div className="flex items-center justify-between mb-6 pb-5 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#4F46E5]/10 flex items-center justify-center">
               <SlidersHorizontal size={14} className="text-[#4F46E5]" />
             </div>
-            <span className="text-slate-600 text-base">Filters</span>
+            <span className="text-slate-600 text-base font-medium">Filters</span>
           </div>
-          <button
-            onClick={() => { setPriceRange(200); setMinRating(0); setOnlyCustomizable(false); setSelectedColor(null); setSelectedSize(null); }}
-            className="text-xs text-slate-400 hover:text-[#4F46E5] transition-colors"
-          >
-            Clear all
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => { setPriceRange(200); setMinRating(0); setOnlyCustomizable(false); setSelectedColor(null); setSelectedSize(null); }}
+              className="text-xs text-slate-400 hover:text-[#4F46E5] transition-colors"
+            >
+              Clear
+            </button>
+            {isMobile && (
+              <button onClick={onClose} className="p-2 -mr-2 text-slate-400 hover:text-slate-600">
+                <ChevronDown size={20} className="rotate-0" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Price Range */}
@@ -186,6 +193,7 @@ export const Products = ({ onNavigate }) => {
   const [view, setView]                     = useState('grid')
   const [selectedColor, setSelectedColor]   = useState(null)
   const [selectedSize, setSelectedSize]     = useState(null)
+  const [isFilterOpen, setIsFilterOpen]     = useState(false)
   
   const [currentPage, setCurrentPage]       = useState(1)
   const ITEMS_PER_PAGE = 10
@@ -228,8 +236,8 @@ export const Products = ({ onNavigate }) => {
             <Sparkles size={15} className="text-yellow-500" />
             {filtered.length} Premium Products
           </span>
-          <h1 className="text-5xl md:text-6xl text-slate-600 mb-3">Our Collection</h1>
-          <p className="text-xl text-slate-500">Discover premium custom sportswear</p>
+          <h1 className="text-3xl md:text-6xl text-slate-600 mb-2">Our Collection</h1>
+          <p className="text-sm md:text-xl text-slate-500">Discover premium custom sportswear</p>
         </div>
 
         {/* Search + Sort */}
@@ -244,15 +252,22 @@ export const Products = ({ onNavigate }) => {
               className="flex-1 bg-transparent text-slate-600 text-sm placeholder:text-slate-400 focus:outline-none"
             />
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            <button 
+              onClick={() => setIsFilterOpen(true)}
+              className="lg:hidden flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-slate-600 shadow-sm"
+            >
+              <SlidersHorizontal size={16} />
+              <span>Filters</span>
+            </button>
             <select
               value={sortBy}
               onChange={e => setSortBy(e.target.value)}
-              className="bg-white border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-slate-600 focus:outline-none focus:border-[#4F46E5] shadow-sm cursor-pointer"
+              className="flex-1 sm:flex-none bg-white border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-slate-600 focus:outline-none focus:border-[#4F46E5] shadow-sm cursor-pointer"
             >
               {SORT_OPTIONS.map(o => <option key={o}>{o}</option>)}
             </select>
-            <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1 shadow-sm">
+            <div className="hidden sm:flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1 shadow-sm">
               <button onClick={() => setView('grid')} className={`p-2.5 rounded-xl transition-all ${view==='grid' ? 'bg-[#4F46E5] text-white shadow' : 'text-gray-400 hover:text-gray-600'}`}><Grid3x3 size={16}/></button>
               <button onClick={() => setView('list')} className={`p-2.5 rounded-xl transition-all ${view==='list' ? 'bg-[#4F46E5] text-white shadow' : 'text-gray-400 hover:text-gray-600'}`}><List size={16}/></button>
             </div>
@@ -276,15 +291,39 @@ export const Products = ({ onNavigate }) => {
           ))}
         </div>
 
-        {/* Sidebar + Grid */}
+        {/* Desktop Sidebar */}
         <div className="flex gap-8 items-start">
-          <FilterSidebar
-            priceRange={priceRange} setPriceRange={setPriceRange}
-            minRating={minRating}   setMinRating={setMinRating}
-            onlyCustomizable={onlyCustomizable} setOnlyCustomizable={setOnlyCustomizable}
-            selectedColor={selectedColor} setSelectedColor={setSelectedColor}
-            selectedSize={selectedSize} setSelectedSize={setSelectedSize}
-          />
+          <div className="hidden lg:block">
+            <FilterSidebar
+              priceRange={priceRange} setPriceRange={setPriceRange}
+              minRating={minRating}   setMinRating={setMinRating}
+              onlyCustomizable={onlyCustomizable} setOnlyCustomizable={setOnlyCustomizable}
+              selectedColor={selectedColor} setSelectedColor={setSelectedColor}
+              selectedSize={selectedSize} setSelectedSize={setSelectedSize}
+            />
+          </div>
+
+          {/* Mobile Sidebar (Drawer) */}
+          <AnimatePresence>
+            {isFilterOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="lg:hidden"
+              >
+                <FilterSidebar
+                  isMobile
+                  onClose={() => setIsFilterOpen(false)}
+                  priceRange={priceRange} setPriceRange={setPriceRange}
+                  minRating={minRating}   setMinRating={setMinRating}
+                  onlyCustomizable={onlyCustomizable} setOnlyCustomizable={setOnlyCustomizable}
+                  selectedColor={selectedColor} setSelectedColor={setSelectedColor}
+                  selectedSize={selectedSize} setSelectedSize={setSelectedSize}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <div className="flex-1">
             {filtered.length === 0 ? (
@@ -298,7 +337,7 @@ export const Products = ({ onNavigate }) => {
             ) : (
               <>
                 <div className={view === 'grid'
-                  ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'
+                  ? 'grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5'
                   : 'flex flex-col gap-4'
                 }>
                   {paginatedProducts.map((product, i) => (

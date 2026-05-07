@@ -9,11 +9,16 @@ export const Footer = () => (
 
         {/* Brand & Contact */}
         <div className="lg:col-span-5">
-          <h2 className={`text-4xl text-[${COLORS.primary}] mb-6`}>EAY SPORTS</h2>
-          <p className="text-gray-500 text-lg leading-relaxed mb-10 max-w-md">
+          <div className="flex items-center gap-3 mb-6">
+            <div className={`w-12 h-12 rounded-xl bg-[${COLORS.primary}] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-200`}>
+              ES
+            </div>
+            <h2 className={`text-3xl font-bold tracking-tight text-slate-800`}>EAY SPORTS</h2>
+          </div>
+          <p className="text-slate-500 text-[16px] leading-snug mb-10 max-w-sm">
             Your premier destination for custom sportswear. We deliver quality, performance, and style to athletes and teams worldwide.
           </p>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {[
               { icon: <Mail size={20} />,   bg: 'bg-[#6366F1] shadow-indigo-100',  text: 'info@eaysports.com' },
               { icon: <Phone size={20} />,  bg: 'bg-[#10B981] shadow-emerald-100', text: '+1 (555) 123-4567' },
@@ -23,7 +28,7 @@ export const Footer = () => (
                 <div className={`w-12 h-12 rounded-full ${item.bg} flex items-center justify-center text-white shadow-lg`}>
                   {item.icon}
                 </div>
-                <span className="text-gray-700 text-lg">{item.text}</span>
+                <span className="text-slate-600 font-medium">{item.text}</span>
               </div>
             ))}
           </div>
@@ -37,11 +42,11 @@ export const Footer = () => (
             { title: 'Support',  links: ['Shipping Info', 'Returns', 'Size Guide', 'Terms & Conditions'] },
           ].map(col => (
             <div key={col.title}>
-              <h4 className="text-xl text-gray-800 mb-8 tracking-tight">{col.title}</h4>
-              <ul className="space-y-5">
+              <h4 className="text-sm uppercase tracking-widest font-bold text-slate-400 mb-6">{col.title}</h4>
+              <ul className="space-y-3.5">
                 {col.links.map(item => (
                   <li key={item}>
-                    <a href="#" className={`text-gray-500 hover:text-[${COLORS.primary}] transition-colors`}>{item}</a>
+                    <a href="#" className={`text-slate-600 hover:text-[${COLORS.primary}] transition-colors text-[15px]`}>{item}</a>
                   </li>
                 ))}
               </ul>

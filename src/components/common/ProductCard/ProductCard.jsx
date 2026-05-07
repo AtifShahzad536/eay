@@ -27,7 +27,7 @@ export const ProductCard = ({ product, index = 0, view = 'grid', onNavigate }) =
       onClick={() => onNavigate && onNavigate('product-details')}
       className={`group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 cursor-pointer flex ${isList ? 'flex-row h-[220px]' : 'flex-col h-full'}`}
     >
-      <div className={`relative overflow-hidden bg-gray-50 flex-shrink-0 ${isList ? 'h-full w-48 border-r border-gray-100' : 'h-52 w-full'}`}>
+      <div className={`relative overflow-hidden bg-gray-50 flex-shrink-0 ${isList ? 'h-full w-48 border-r border-gray-100' : 'h-36 sm:h-52 w-full'}`}>
         <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
@@ -51,18 +51,18 @@ export const ProductCard = ({ product, index = 0, view = 'grid', onNavigate }) =
         </button> */}
       </div>
 
-      <div className={`p-4 flex-1 flex flex-col ${isList ? 'justify-center sm:p-6' : ''}`}>
-        <p className="text-slate-600 text-sm leading-snug mb-1.5">{product.name}</p>
+      <div className={`p-3 sm:p-4 flex-1 flex flex-col ${isList ? 'justify-center sm:p-6' : ''}`}>
+        <p className="text-slate-600 text-[11px] sm:text-sm leading-tight mb-1">{product.name}</p>
         <StarRow rating={product.rating} reviews={product.reviews} />
-        <div className="flex gap-1.5 mt-2.5">
+        <div className="flex gap-1.5 mt-1.5 sm:mt-2.5">
           {product.colors.map(c => (
-            <span key={c} className="w-4 h-4 rounded-full border-2 border-white shadow-sm ring-1 ring-gray-200" style={{ background: c }} />
+            <span key={c} className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-white shadow-sm ring-1 ring-gray-200" style={{ background: c }} />
           ))}
         </div>
-        <div className="flex items-center justify-between mt-auto pt-4">
-          <span className="text-xl text-[#4F46E5]">${product.price}</span>
-          <button className={`w-9 h-9 rounded-lg ${GRADIENTS.button} text-white flex items-center justify-center shadow-lg shadow-indigo-200 hover:scale-110 transition-transform`}>
-            <ShoppingCart size={16} />
+        <div className="flex items-center justify-between mt-auto pt-2 sm:pt-4">
+          <span className="text-base sm:text-xl text-[#4F46E5] font-semibold">${product.price}</span>
+          <button className={`w-7 h-7 sm:w-9 sm:h-9 rounded-lg ${GRADIENTS.button} text-white flex items-center justify-center shadow-lg shadow-indigo-200 hover:scale-110 transition-transform`}>
+            <ShoppingCart size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
       </div>

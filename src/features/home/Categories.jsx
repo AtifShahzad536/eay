@@ -49,12 +49,12 @@ export const Categories = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-xl text-slate-500 mb-16"
+          className="text-lg md:text-xl text-slate-500 mb-16"
         >
           Find your perfect sportswear style
         </motion.p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((cat, index) => (
             <motion.div
               key={index}
@@ -63,7 +63,7 @@ export const Categories = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -6 }}
-              className="relative h-[380px] rounded-xl overflow-hidden cursor-pointer group shadow-xl shadow-gray-200/60"
+              className="relative h-[220px] sm:h-[380px] rounded-xl overflow-hidden cursor-pointer group shadow-xl shadow-gray-200/60"
             >
               {/* Real Background Image */}
               <img
@@ -79,10 +79,10 @@ export const Categories = () => {
 
               {/* Content */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6">
-                <h3 className="text-4xl  mb-4 tracking-tight drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                <h3 className="text-2xl sm:text-4xl mb-2 sm:mb-4 tracking-tight drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
                   {cat.name}
                 </h3>
-                <div className="bg-white/25 backdrop-blur-md px-6 py-2 rounded-full  text-sm border border-white/30">
+                <div className="bg-white/25 backdrop-blur-md px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-[10px] sm:text-sm border border-white/30">
                   {cat.count}
                 </div>
               </div>

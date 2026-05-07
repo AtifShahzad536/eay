@@ -58,12 +58,12 @@ export const Features = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-xl text-slate-500 mb-16"
+          className="text-lg md:text-xl text-slate-500 mb-16"
         >
           Everything you need for perfect custom sportswear
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -71,13 +71,13 @@ export const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-10 rounded-lg bg-white border border-gray-100 text-left hover:shadow-2xl transition-all hover:-translate-y-2 group"
+              className="p-5 sm:p-10 rounded-xl bg-white border border-gray-100 text-left hover:shadow-2xl transition-all hover:-translate-y-2 group"
             >
-              <div className={`w-14 h-14 ${feature.color} text-white rounded-lg flex items-center justify-center mb-8 shadow-lg shadow-gray-200 group-hover:rotate-12 transition-transform`}>
+              <div className={`w-10 h-10 sm:w-14 sm:h-14 ${feature.color} text-white rounded-lg flex items-center justify-center mb-4 sm:mb-8 shadow-lg shadow-gray-200 group-hover:rotate-12 transition-transform`}>
                 {feature.icon}
               </div>
-              <h3 className="text-2xl  text-slate-900 mb-4">{feature.title}</h3>
-              <p className="text-slate-500 leading-relaxed font-medium">{feature.desc}</p>
+              <h3 className="text-lg sm:text-2xl text-slate-900 mb-2 sm:mb-4">{feature.title}</h3>
+              <p className="text-[11px] sm:text-base text-slate-500 leading-relaxed font-medium">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
