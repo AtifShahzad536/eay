@@ -95,6 +95,7 @@ export const BTN = {
   primary:   `bg-[${COLORS.primary}] hover:bg-[${COLORS.primaryDark}] text-white px-8 py-4 rounded-full transition-all hover:scale-105`,
   secondary: `bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-full hover:bg-slate-50 transition-all`,
   ghost:     `bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full hover:bg-white/20 backdrop-blur-sm transition-all`,
+  outline:   `bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-full hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm`,
 }
 
 /* ── SECTION SPACING ──────────────────────────────────── */

@@ -14,12 +14,24 @@ import { ProductDetails } from './pages/ProductDetails'
 import { Cart }    from './features/cart/Cart'
 import { Profile } from './features/profile/Profile'
 import { Search }  from './features/search/Search'
+import { Auth } from './pages/Auth'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [isCartOpen, setIsCartOpen]     = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen]   = useState(false)
+  
+  // Auth state
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  const handleProfileClick = () => {
+    if (isAuthenticated) {
+      setIsProfileOpen(true)
+    } else {
+      navigateTo('auth')
+    }
+  }
 
   const navigateTo = (page) => {
     setCurrentPage(page)
@@ -32,7 +44,7 @@ function App() {
 
         <Header
           onCartOpen={() => setIsCartOpen(true)}
-          onProfileOpen={() => setIsProfileOpen(true)}
+          onProfileOpen={handleProfileClick}
           onSearchOpen={() => setIsSearchOpen(true)}
           onProductsOpen={() => navigateTo('products')}
           onHomeOpen={() => navigateTo('home')}
@@ -42,7 +54,11 @@ function App() {
 
         {/* Overlay Pages */}
         <Cart    isOpen={isCartOpen}    onClose={() => setIsCartOpen(false)} />
-        <Profile isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+        <Profile 
+          isOpen={isProfileOpen} 
+          onClose={() => setIsProfileOpen(false)} 
+          onLogout={() => { setIsAuthenticated(false); setIsProfileOpen(false); }}
+        />
         <Search  isOpen={isSearchOpen}  onClose={() => setIsSearchOpen(false)} />
 
         {/* Routed Pages */}
@@ -52,6 +68,7 @@ function App() {
           {currentPage === 'about'    && <About />}
           {currentPage === 'contact'  && <Contact />}
           {currentPage === 'product-details' && <ProductDetails onNavigate={navigateTo} />}
+          {currentPage === 'auth'     && <Auth onLoginSuccess={() => { setIsAuthenticated(true); navigateTo('home') }} />}
         </main>
 
         <Footer />

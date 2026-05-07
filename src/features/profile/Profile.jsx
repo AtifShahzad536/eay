@@ -40,7 +40,7 @@ const NAV_ITEMS = [
   { key: 'settings', label: 'Settings',      icon: Settings },
 ]
 
-export const Profile = ({ isOpen, onClose }) => {
+export const Profile = ({ isOpen, onClose, onLogout }) => {
   const [activeTab, setActiveTab] = useState('profile')
 
   useEffect(() => {
@@ -124,7 +124,10 @@ export const Profile = ({ isOpen, onClose }) => {
               </nav>
 
               {/* Logout */}
-              <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-colors mt-4">
+              <button 
+                onClick={onLogout}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-colors mt-4"
+              >
                 <LogOut size={17} />
                 Logout
               </button>

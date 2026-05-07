@@ -35,6 +35,8 @@ export const ProductDetails = ({ onNavigate }) => {
   const [selectedSize, setSelectedSize] = useState('M')
   const [selectedColor, setSelectedColor] = useState('Blue')
   const [qty, setQty] = useState(1)
+  const [customName, setCustomName] = useState('')
+  const [customNumber, setCustomNumber] = useState('')
 
   return (
     <motion.div 
@@ -180,6 +182,40 @@ export const ProductDetails = ({ onNavigate }) => {
               </div>
             </motion.div>
 
+            {/* Personalization Section */}
+            <motion.div variants={fadeUp} className="mb-10 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+              <div className="flex items-center gap-2 mb-4">
+                <ShieldCheck size={18} className={`text-[${COLORS.primary}]`} />
+                <h3 className={`${TEXT.dark} font-semibold`}>Personalize Your Jersey</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider font-bold text-slate-400 mb-1.5">Name on Back</label>
+                  <input 
+                    type="text" 
+                    value={customName}
+                    onChange={e => setCustomName(e.target.value)}
+                    placeholder="Enter Name" 
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider font-bold text-slate-400 mb-1.5">Number</label>
+                  <input 
+                    type="text" 
+                    maxLength={2}
+                    value={customNumber}
+                    onChange={e => setCustomNumber(e.target.value)}
+                    placeholder="00" 
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+                  />
+                </div>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-3 flex items-start gap-1.5">
+                <span className="text-amber-500 mt-0.5">●</span> Customization may add 2-3 business days to shipping time.
+              </p>
+            </motion.div>
+
             {/* Action Buttons */}
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 mb-6">
               <button className={`${BTN.primary} flex-1 w-full !py-4 rounded-xl shadow-xl shadow-indigo-200/50 flex items-center justify-center gap-2 text-[15px]`}>
@@ -191,7 +227,7 @@ export const ProductDetails = ({ onNavigate }) => {
               </button>
             </motion.div>
             
-            <motion.button variants={fadeUp} className={`${BTN.ghost} w-full !py-4 rounded-xl border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2 hover:border-indigo-200 transition-colors`}>
+            <motion.button variants={fadeUp} className={`${BTN.outline} w-full !py-4 rounded-xl flex items-center justify-center gap-2 hover:border-indigo-200 transition-colors`}>
               <span className="text-indigo-500"><ShieldCheck size={20} /></span> Customize This Product
             </motion.button>
 
