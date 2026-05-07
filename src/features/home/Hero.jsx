@@ -56,28 +56,28 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl p-3 sm:px-6 sm:py-5"
+          className=""
         >
           {/* Badge */}
-          <div className="flex items-center gap-2 mb-3">
+          {/* <div className="flex items-center gap-2 mb-3">
             <Sparkles size={14} className="text-yellow-400 animate-pulse" />
             <span className="text-[10px]  text-yellow-300 uppercase tracking-widest">
               AI-Powered Design Assistant
             </span>
-          </div>
+          </div> */}
 
           {/* Title — smaller */}
-          <h1 className="text-[20px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-[600] leading-[1.15] tracking-[-0.03em] mb-1 sm:mb-2 text-white">
+          {/* <h1 className="text-[20px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-[600] leading-[1.15] tracking-[-0.03em] mb-1 sm:mb-2 text-white">
             Create Your{' '}
             <span className={GRADIENTS.heroText}>
               Perfect Jersey
             </span>
-          </h1>
+          </h1> */}
 
           {/* Subtitle — hidden on mobile to save space */}
-          <p className="hidden sm:block text-[14px] text-white/75 leading-relaxed mb-5">
+          {/* <p className="hidden sm:block text-[14px] text-white/75 leading-relaxed mb-5">
             Premium sportswear designed by you — fast delivery &amp; top quality.
-          </p>
+          </p> */}
 
           {/* Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">

@@ -35,7 +35,11 @@ function App() {
 
   const navigateTo = (page) => {
     setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Force immediate scroll to top on page change
+    window.scrollTo(0, 0)
+    // Also try to reset any custom scroll engines
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
   }
 
   return (
