@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Star, Heart, ShoppingCart, Truck, RefreshCcw, ShieldCheck, ChevronRight, Check } from 'lucide-react'
 import { COLORS, TEXT, BG, SPACING, GRADIENTS, BTN } from '../config/theme'
@@ -31,6 +32,8 @@ const fadeUp = {
 }
 
 export const ProductDetails = ({ onNavigate }) => {
+  const { id } = useParams()
+  const navigate = useNavigate()
   const [activeImage, setActiveImage] = useState(0)
   const [selectedSize, setSelectedSize] = useState('M')
   const [selectedColor, setSelectedColor] = useState('Blue')
@@ -56,7 +59,7 @@ export const ProductDetails = ({ onNavigate }) => {
           <ChevronRight size={14} />
           <button onClick={() => onNavigate('products')} className="hover:text-indigo-600 transition-colors">Products</button>
           <ChevronRight size={14} />
-          <span className={TEXT.dark}>Pro Performance Jersey</span>
+          <span className={TEXT.dark}>{id ? id.replace(/-/g, ' ').toUpperCase() : 'Pro Performance Jersey'}</span>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
@@ -227,7 +230,11 @@ export const ProductDetails = ({ onNavigate }) => {
               </button>
             </motion.div>
             
-            <motion.button variants={fadeUp} className={`${BTN.outline} w-full !py-4 rounded-xl flex items-center justify-center gap-2 hover:border-indigo-200 transition-colors`}>
+            <motion.button 
+              variants={fadeUp} 
+              onClick={() => navigate('/builder', { state: { from: `/product-details/${id || '1'}` } })}
+              className={`${BTN.outline} w-full !py-4 rounded-xl flex items-center justify-center gap-2 hover:border-indigo-200 transition-colors`}
+            >
               <span className="text-indigo-500"><ShieldCheck size={20} /></span> Customize This Product
             </motion.button>
 

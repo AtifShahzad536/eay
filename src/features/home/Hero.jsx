@@ -26,9 +26,11 @@ export const Hero = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length)
 
   return (
-    <section className="relative h-[380px] sm:min-h-screen overflow-hidden bg-slate-950">
+    <section className="relative w-full mt-20 bg-[#f4f4f4] overflow-hidden">
+      {/* Invisible placeholder sets the exact aspect ratio of the banner images */}
+      <img src={IMAGES[0]} alt="placeholder" className="w-full h-auto invisible pointer-events-none" />
 
-      {/* Full-Screen Slider — No overlay, fully visible images */}
+      {/* Slider */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode='wait'>
           <motion.div
@@ -41,13 +43,13 @@ export const Hero = () => {
           >
             <img
               src={IMAGES[currentSlide]}
-              alt="Hero Sports"
-              className="w-full h-full object-cover"
+              alt="Hero Sports Banner"
+              className="w-full h-full object-contain"
             />
           </motion.div>
         </AnimatePresence>
-        {/* Only a very subtle bottom fade so controls stay readable */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        {/* Subtle bottom fade for controls */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* Text Content — bottom-left, compact glass card */}

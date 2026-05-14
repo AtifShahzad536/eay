@@ -24,7 +24,7 @@ export const ProductCard = ({ product, index = 0, view = 'grid', onNavigate }) =
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
-      onClick={() => onNavigate && onNavigate('product-details')}
+      onClick={() => onNavigate && onNavigate(`product-details/${product.id}`)}
       className={`group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 cursor-pointer flex ${isList ? 'flex-row h-[220px]' : 'flex-col h-full'}`}
     >
       <div className={`relative overflow-hidden bg-gray-50 flex-shrink-0 ${isList ? 'h-full w-48 border-r border-gray-100' : 'h-36 sm:h-52 w-full'}`}>

@@ -46,77 +46,79 @@ export const VideoShowcase = () => {
     <div className="absolute bottom-4 right-4 flex items-center gap-2 z-20">
       <button
         onClick={onTogglePlay}
-        className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
+        className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-all shadow-lg"
       >
-        {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
+        {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
       </button>
       <button
         onClick={onToggleMute}
-        className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
+        className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-all shadow-lg"
       >
-        {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+        {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
       </button>
     </div>
   )
 
   return (
-    <section className="bg-white mt-2 overflow-hidden border-y border-slate-100">
+    <section className="bg-white mt-2 overflow-hidden border-y border-slate-100 relative">
       <div className="flex flex-col lg:flex-row items-stretch min-h-[600px] lg:min-h-[750px]">
 
-        {/* Left Side: Dual Video Stack */}
-        <div className="w-full lg:w-1/2 flex flex-col bg-slate-100">
+        {/* Left Side: Modern Overlapping Media Cluster */}
+        <div className="w-full lg:w-1/2 relative bg-white flex items-center justify-center p-8 lg:p-16 overflow-hidden">
+          {/* Abstract Ambient Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-purple-50/30" />
+          <div className="absolute top-1/4 -left-20 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-[80px] opacity-40 animate-pulse" />
+          <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-[80px] opacity-40" style={{ animationDelay: '2s' }} />
 
-          {/* Top Video: Action */}
-          <div className="h-1/2 relative border-b border-white/10 group">
-            <video
-              ref={videoRef1}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
+          <div className="relative w-full max-w-[500px] aspect-[4/5] z-10">
+            {/* Top Right Video: Action */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="absolute top-0 right-0 w-[85%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl shadow-indigo-900/15 z-10 group"
             >
-              <source src="https://www.select-sport.com/cdn/shop/videos/c/vp/05b072ff0f6547d0ac4a35024391ff3f/05b072ff0f6547d0ac4a35024391ff3f.HD-1080p-7.2Mbps-22875215.mp4?v=0" type="video/mp4" />
-            </video>
-            <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-md text-white text-[9px] font-bold uppercase tracking-widest">
-              Action Phase
-            </div>
-            <VideoControls
-              isPlaying={isPlaying1}
-              isMuted={isMuted1}
-              onTogglePlay={togglePlay1}
-              onToggleMute={toggleMute1}
-            />
-          </div>
+              <div className="absolute inset-0 bg-indigo-900/10 mix-blend-overlay z-10 pointer-events-none" />
+              <video
+                ref={videoRef1}
+                autoPlay muted loop playsInline
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              >
+                <source src="https://www.select-sport.com/cdn/shop/videos/c/vp/05b072ff0f6547d0ac4a35024391ff3f/05b072ff0f6547d0ac4a35024391ff3f.HD-1080p-7.2Mbps-22875215.mp4?v=0" type="video/mp4" />
+              </video>
+              <div className="absolute top-4 left-4 px-4 py-1.5 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full text-white text-[10px] font-bold uppercase tracking-widest z-20 shadow-lg">
+                Action Phase
+              </div>
+              <VideoControls isPlaying={isPlaying1} isMuted={isMuted1} onTogglePlay={togglePlay1} onToggleMute={toggleMute1} />
+            </motion.div>
 
-          {/* Bottom Video: Process/Craft */}
-          <div className="h-1/2 relative group">
-            <video
-              ref={videoRef2}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
+            {/* Bottom Left Video: Process/Craft */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute bottom-0 left-0 w-[75%] h-[55%] rounded-[2rem] overflow-hidden shadow-2xl shadow-purple-900/20 z-20 group border-4 border-white"
             >
-              <source src="https://www.select-sport.com/cdn/shop/videos/c/vp/04457a95c3a744be95879b0826d72cc9/04457a95c3a744be95879b0826d72cc9.HD-1080p-7.2Mbps-12161544.mp4?v=0" type="video/mp4" />
-            </video>
-            <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-md text-white text-[9px] font-bold uppercase tracking-widest">
-              Craft Phase
-            </div>
-            <VideoControls
-              isPlaying={isPlaying2}
-              isMuted={isMuted2}
-              onTogglePlay={togglePlay2}
-              onToggleMute={toggleMute2}
-            />
+              <div className="absolute inset-0 bg-purple-900/10 mix-blend-overlay z-10 pointer-events-none" />
+              <video
+                ref={videoRef2}
+                autoPlay muted loop playsInline
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              >
+                <source src="https://www.select-sport.com/cdn/shop/videos/c/vp/04457a95c3a744be95879b0826d72cc9/04457a95c3a744be95879b0826d72cc9.HD-1080p-7.2Mbps-12161544.mp4?v=0" type="video/mp4" />
+              </video>
+              <div className="absolute top-4 left-4 px-4 py-1.5 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full text-white text-[10px] font-bold uppercase tracking-widest z-20 shadow-lg">
+                Craft Phase
+              </div>
+              <VideoControls isPlaying={isPlaying2} isMuted={isMuted2} onTogglePlay={togglePlay2} onToggleMute={toggleMute2} />
+            </motion.div>
           </div>
         </div>
 
-        {/* Right Side: Content */}
-        <div className="w-full lg:w-1/2 flex items-center bg-[#F8FAFF] p-8 sm:p-16 lg:p-24 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 opacity-60" />
-
+        {/* Right Side: Editorial Content */}
+        <div className="w-full lg:w-1/2 flex items-center bg-[#FAFAFA] p-8 sm:p-16 lg:p-24 relative overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -124,44 +126,65 @@ export const VideoShowcase = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-xl relative z-10"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100/50 text-[#4F46E5] text-[11px] font-bold uppercase tracking-widest mb-8">
-              <span className="w-2 h-2 rounded-full bg-[#4F46E5] animate-pulse" />
-              Behind The Scenes
+            <div className="flex items-center gap-4 mb-10">
+              <div className="h-px w-10 bg-indigo-500" />
+              <span className="text-[#4F46E5] text-[10px] font-black uppercase tracking-[0.3em]">
+                Behind The Scenes
+              </span>
             </div>
 
-            <h2 className="text-4xl lg:text-6xl text-slate-800 leading-[1.1] mb-8 font-bold">
-              Crafted for the <br />
-              <span className={`text-transparent bg-clip-text ${GRADIENTS.button}`}>Champions.</span>
+            <h2 className="text-5xl lg:text-7xl text-slate-900 leading-[1.05] mb-8  tracking-tighter">
+              Crafted for <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-500 animate-gradient-x">Champions.</span>
             </h2>
 
-            <p className="text-slate-500 text-lg leading-relaxed mb-10">
+            <p className="text-slate-500 text-lg leading-relaxed mb-14 font-medium max-w-md">
               We merge elite athletic performance with artisanal craftsmanship. Our two-stage process ensures every jersey is both a masterpiece of design and a powerhouse of performance.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-10 mb-16">
               {[
-                { title: 'Action Tested', icon: <Zap className="text-amber-500" size={20} /> },
-                { title: 'Hand-Finished', icon: <Scissors className="text-indigo-500" size={20} /> },
-                { title: 'Breathable Tech', icon: <Wind className="text-sky-500" size={20} /> },
-                { title: 'AI Optimized', icon: <Cpu className="text-purple-500" size={20} /> }
+                { title: 'Action Tested', desc: 'Engineered for peak movement', icon: <Zap className="text-indigo-500" size={20} strokeWidth={2} /> },
+                { title: 'Hand-Finished', desc: 'Artisanal attention to detail', icon: <Scissors className="text-indigo-500" size={20} strokeWidth={2} /> },
+                { title: 'Breathable Tech', desc: 'Advanced moisture control', icon: <Wind className="text-indigo-500" size={20} strokeWidth={2} /> },
+                { title: 'AI Optimized', desc: 'Data-driven fit algorithms', icon: <Cpu className="text-indigo-500" size={20} strokeWidth={2} /> }
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white border border-indigo-50 shadow-sm hover:shadow-md transition-all">
-                  <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center">
-                    {item.icon}
+                <div key={i} className="group relative flex flex-col gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center group-hover:border-indigo-300 group-hover:shadow-md transition-all duration-500">
+                    <div className="group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
+                      {item.icon}
+                    </div>
                   </div>
-                  <span className="text-slate-700 font-semibold text-sm">{item.title}</span>
+                  <div>
+                    <h4 className="text-slate-900 font-bold text-sm tracking-wide mb-1">{item.title}</h4>
+                    <p className="text-slate-400 text-xs font-medium leading-relaxed max-w-[160px]">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <button className={`${BTN.primary} group flex items-center gap-3 px-8 py-4 rounded-xl shadow-xl shadow-indigo-100 hover:scale-105 transition-all w-full sm:w-auto justify-center`}>
-              Learn Our Process
-              <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            <button className="group relative inline-flex items-center gap-4 text-indigo-600 font-bold text-[11px] uppercase tracking-[0.2em] overflow-hidden hover:text-indigo-900 transition-colors">
+              <span className="relative z-10">Discover Process</span>
+              <div className="w-12 h-px bg-indigo-200 group-hover:w-20 group-hover:bg-indigo-900 transition-all duration-500 relative z-10" />
+              <ChevronRight size={14} className="relative z-10 -ml-2 group-hover:translate-x-2 transition-transform duration-500" />
             </button>
           </motion.div>
         </div>
 
       </div>
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 4s ease infinite;
+        }
+      `}} />
     </section>
   )
 }
+

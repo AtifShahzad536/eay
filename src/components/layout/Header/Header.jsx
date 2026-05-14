@@ -2,9 +2,32 @@ import { useHeader } from './useHeader'
 import { Search, ShoppingCart, User, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HEADER, BTN, GRADIENTS, SPACING } from '../../../config/theme'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
-export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen, onHomeOpen, onAboutOpen, onContactOpen }) => {
+export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen, onHomeOpen, onAboutOpen, onContactOpen, onBuilderOpen }) => {
   const { activeTab, setActiveTab, navLinks, isMenuOpen, toggleMenu } = useHeader()
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  // Sync active tab with URL (including nested routes like product details)
+  useEffect(() => {
+    const currentPath = location.pathname
+    let foundTab = ''
+
+    if (currentPath === '/') {
+      foundTab = 'Home'
+    } else if (currentPath.startsWith('/product-details') || currentPath.startsWith('/products')) {
+      foundTab = 'Products'
+    } else if (currentPath.startsWith('/builder')) {
+      foundTab = 'Custom Builder'
+    } else {
+      const activeLink = navLinks.find(link => currentPath.startsWith(link.href) && link.href !== '/')
+      if (activeLink) foundTab = activeLink.name
+    }
+
+    setActiveTab(foundTab)
+  }, [location.pathname, navLinks, setActiveTab])
 
   const handleNavClick = (linkName) => {
     setActiveTab(linkName)
@@ -12,15 +35,16 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
     if (linkName === 'Home') onHomeOpen?.()
     if (linkName === 'About') onAboutOpen?.()
     if (linkName === 'Contact') onContactOpen?.()
+    if (linkName === 'Custom Builder') onBuilderOpen?.()
   }
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 ${HEADER.bg} backdrop-blur-md border-b ${HEADER.border} shadow-lg shadow-indigo-900/30`}>
+    <header className={`fixed top-0 left-0 w-full z-[100] ${HEADER.bg} backdrop-blur-md border-b ${HEADER.border} shadow-lg shadow-indigo-900/30`}>
       <div className={`${SPACING.container}`}>
         <div className="flex justify-between items-center h-20">
 
           {/* Logo Section */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavClick('Home')}>
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="w-11 h-11 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white font-[600] text-lg shadow-md">
               ES
             </div>
@@ -30,12 +54,12 @@ export const Header = ({ onCartOpen, onProfileOpen, onSearchOpen, onProductsOpen
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center bg-white/10 p-1 rounded-full border border-white/15">
+          <nav className="hidden md:flex items-center bg-white/10 p-2 rounded-full border border-white/15">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.name)}
-                className={`px-5 py-2 rounded-full text-[13px] font-medium transition-all duration-300 ${activeTab === link.name
+                className={`px-5 py-2 rounded-xl text-[13px] font-medium transition-all duration-300 ${activeTab === link.name
                   ? 'bg-white text-[#4F46E5] shadow-md'
                   : 'text-white/80 hover:text-white hover:bg-white/10'
                   }`}

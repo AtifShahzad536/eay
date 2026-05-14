@@ -33,3 +33,30 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* ─── Builder specific styles ─── */
+.right-scroll::-webkit-scrollbar { width: 5px; }
+.right-scroll::-webkit-scrollbar-track { background: #f0f0f0; }
+.right-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 999px; }
+.right-scroll::-webkit-scrollbar-thumb:hover { background: #4F46E5; }
+
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.acc-body.open {
+  max-height: 1200px;
+}
+
+.swatch {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  cursor: pointer;
+}
+.swatch:hover { transform: scale(1.2); z-index: 5; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.25s ease both; }

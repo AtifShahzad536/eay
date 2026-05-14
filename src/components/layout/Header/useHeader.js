@@ -5,11 +5,11 @@ export const useHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Products', href: '#' },
-    { name: 'Custom Builder', href: '#' },
-    { name: 'About', href: '#' },
-    { name: 'Contact', href: '#' },
+    { name: 'Home', href: '/' },
+    { name: 'Products', href: '/products' },
+    { name: 'Custom Builder', href: '/builder' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ]
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
