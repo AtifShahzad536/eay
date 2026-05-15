@@ -108,7 +108,7 @@ export const builderSlice = createSlice({
         imageUrl: decal.imageUrl || null,
         color: '#ffffff',
         font: 'Outfit',
-        decalScale: 0.15,
+        decalScale: decal.type === 'image' ? 0.12 : 0.15,
         ...decal
       };
       state.decals.push(newDecal);
