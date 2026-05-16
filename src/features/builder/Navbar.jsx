@@ -101,18 +101,18 @@ const Navbar = ({ onBack, backTo }) => {
             </button>
 
             {activeMenu === menu.label && (
-              <div className="absolute top-full left-0 mt-0 w-60 bg-white border border-gray-900 rounded-none shadow-2xl z-50 py-1.5 fade-up overflow-hidden">
+              <div className={`absolute top-full ${menu.label === 'Edit' ? 'right-0 sm:left-0' : 'left-0'} mt-0 w-max min-w-[200px] bg-white border border-gray-900 rounded-none shadow-2xl z-50 py-1.5 fade-up overflow-hidden`}>
                 {menu.items.map((item, i) => (
                   <button
                     key={i}
                     onClick={() => { item.action(); setActiveMenu(null); }}
                     className="w-full text-left px-5 py-3 text-[10px] font-black text-gray-700 hover:text-blue-600 flex items-center justify-between group transition-colors duration-100"
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-4">
                       <span className="text-sm opacity-50 group-hover:opacity-100">{item.icon}</span>
-                      <span className="uppercase tracking-[0.2em]">{item.label}</span>
+                      <span className="uppercase tracking-[0.2em] whitespace-nowrap">{item.label}</span>
                     </div>
-                    <span className="text-[8px] opacity-0 group-hover:opacity-100 transition-opacity">PRO</span>
+                    <span className="text-[8px] opacity-0 group-hover:opacity-100 transition-opacity ml-4">PRO</span>
                   </button>
                 ))}
               </div>
