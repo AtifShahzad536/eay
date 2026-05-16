@@ -53,80 +53,83 @@ const Navbar = ({ onBack, backTo }) => {
   return (
     <div
       ref={barRef}
-      className="w-full h-8 bg-[#f5f5f5] border-b border-[#e0e0e0] flex items-stretch select-none z-50 flex-shrink-0"
-      style={{ fontFamily: "'Inter', sans-serif" }}
+      className="w-full h-10 bg-white border-b border-gray-900 flex items-stretch select-none z-50 flex-shrink-0 relative"
+      style={{ fontFamily: "'Outfit', sans-serif" }}
     >
-      {/* App Branding */}
-      <div className="flex items-center px-4 gap-2 border-r border-[#e0e0e0]">
+      {/* ── Branding Section ── */}
+      <div className="flex items-center px-3 sm:px-6 gap-3 border-r border-gray-100">
         {onBack ? (
           <button
             onClick={onBack}
-            className="flex items-center gap-1.5 px-2 py-0.5 hover:bg-gray-200 rounded transition-colors mr-2 group"
+            className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 hover:bg-blue-600 hover:text-white transition-all group border border-gray-100"
           >
-            <span className="text-[10px] text-gray-400 group-hover:text-blue-500 transition-colors">◀</span>
-            <span className="text-[9px]  text-gray-400 group-hover:text-gray-900 uppercase tracking-tighter transition-colors">Back</span>
+            <span className="text-[10px] group-hover:translate-x-0.5 transition-transform">◀</span>
+            <span className="text-[9px] font-black uppercase tracking-tighter">Exit</span>
           </button>
         ) : (
-          <div className="flex items-center gap-4">
-            <Link to="/" title="Back to Home" className="flex items-center gap-2 hover:bg-gray-200 px-1 rounded transition-colors">
-              <div className="w-4 h-4 bg-[#00b0f0] rounded-sm flex items-center justify-center">
-                <span className="text-white font-black text-[9px] leading-none">E</span>
+          <div className="flex items-center gap-3">
+            <Link to="/" title="Home" className="flex items-center gap-2 hover:scale-105 transition-transform">
+              <div className="w-5 h-5 bg-blue-600 rounded-none flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <span className="text-white font-black text-[10px] leading-none">E</span>
               </div>
             </Link>
-            {backTo ? (
-              <Link
-                to={backTo}
-                className="text-[9px] font-black text-gray-400 hover:text-blue-600 uppercase tracking-widest transition-colors flex items-center gap-1.5"
-              >
-                <span className="text-[10px]">↩</span> {backTo.includes('product-details') ? 'Go Back' : 'Back'}
-              </Link>
-            ) : (
-              <Link
-                to="/"
-                className="text-[9px]  text-gray-400 hover:text-blue-600 uppercase tracking-widest transition-colors flex items-center gap-1.2"
-              >
-                <span className="text-[8px]">↩</span> Home
-              </Link>
+            <div className="h-4 w-px bg-gray-100 hidden sm:block" />
+            {backTo && (
+               <Link to={backTo} className="hidden sm:flex text-[9px] font-black text-gray-400 hover:text-blue-600 uppercase tracking-widest transition-all gap-1.5">
+                  <span className="text-[10px]">↩</span> {backTo.includes('product-details') ? 'Return' : 'Back'}
+               </Link>
             )}
           </div>
         )}
-        <span className="text-[8px] md:text-[12px] font-semibold text-[#222]  tracking-tight ml-1">EAY Builder</span>
+        <span className="text-[10px] sm:text-[11px] font-black text-gray-900 uppercase tracking-[0.2em] whitespace-nowrap">
+          EAY <span className="text-blue-600">Builder</span>
+        </span>
       </div>
 
-      {/* Menus */}
-      {menuData.map((menu) => (
-        <div key={menu.label} className="relative flex items-stretch">
-          <button
-            className={`px-4 h-full text-[8px]  uppercase tracking-widest flex items-center gap-2 transition-all duration-200 outline-none
-              ${activeMenu === menu.label ? 'text-[#4F46E5] bg-indigo-50/50' : 'text-gray-500 hover:text-indigo-600 hover:bg-indigo-50/30'}`}
-            onMouseDown={() => setActiveMenu(prev => prev === menu.label ? null : menu.label)}
-            onMouseEnter={() => activeMenu && setActiveMenu(menu.label)}
-          >
-            {menu.label}
-          </button>
+      {/* ── Command Menus ── */}
+      <div className="flex items-stretch">
+        {menuData.map((menu) => (
+          <div key={menu.label} className="relative flex items-stretch border-r border-gray-50">
+            <button
+              className={`px-4 sm:px-6 h-full text-[9px] font-black uppercase tracking-[0.2em] flex items-center gap-2 transition-all duration-300 outline-none
+                ${activeMenu === menu.label ? 'text-blue-600 shadow-[inset_0_-2px_0_#2563eb]' : 'text-gray-500 hover:text-blue-600 hover:shadow-[inset_0_-1px_0_#e5e7eb]'}`}
+              onClick={() => setActiveMenu(prev => prev === menu.label ? null : menu.label)}
+              onMouseEnter={() => activeMenu && setActiveMenu(menu.label)}
+            >
+              {menu.label}
+              <span className={`text-[8px] transition-transform duration-300 ${activeMenu === menu.label ? 'rotate-180' : ''}`}>▼</span>
+            </button>
 
-          {activeMenu === menu.label && (
-            <div className="absolute top-full left-0 mt-0 w-56 bg-white border border-gray-100 rounded-b-xl shadow-2xl z-50 py-1.5 fade-up overflow-hidden backdrop-blur-xl">
-              {menu.items.map((item, i) => (
-                <button
-                  key={i}
-                  onClick={() => { item.action(); setActiveMenu(null); }}
-                  className="w-full text-left px-4 py-2.5 text-[10px] font-bold text-gray-600 hover:bg-indigo-50 hover:text-[#4F46E5] flex items-center gap-3 transition-colors duration-100"
-                >
-                  <span className="text-base text-gray-400">{item.icon}</span>
-                  <span className="uppercase tracking-widest">{item.label}</span>
-                </button>
-              ))}
-            </div>
-          )}
+            {activeMenu === menu.label && (
+              <div className="absolute top-full left-0 mt-0 w-60 bg-white border border-gray-900 rounded-none shadow-2xl z-50 py-1.5 fade-up overflow-hidden">
+                {menu.items.map((item, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { item.action(); setActiveMenu(null); }}
+                    className="w-full text-left px-5 py-3 text-[10px] font-black text-gray-700 hover:text-blue-600 flex items-center justify-between group transition-colors duration-100"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm opacity-50 group-hover:opacity-100">{item.icon}</span>
+                      <span className="uppercase tracking-[0.2em]">{item.label}</span>
+                    </div>
+                    <span className="text-[8px] opacity-0 group-hover:opacity-100 transition-opacity">PRO</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* ── Status Metadata ── */}
+      <div className="ml-auto flex items-center gap-3 sm:gap-6 px-4 sm:px-8 bg-gray-50/50 border-l border-gray-100">
+        <div className="hidden lg:flex flex-col items-end">
+          <span className="text-[7px] font-black text-gray-300 uppercase tracking-[0.3em]">Environment</span>
+          <span className="text-[9px] font-black text-gray-900 uppercase tracking-widest">Production v1.0.4</span>
         </div>
-      ))}
-
-      <div className="ml-auto flex items-center gap-4 px-6 border-l border-gray-100">
-        <span className="text-[8px] text-gray-300 font-black uppercase tracking-[0.2em]">v1.0.4 · Production</span>
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-          <span className="text-[8px] font-black text-green-500 uppercase tracking-widest">Live</span>
+        <div className="flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 shadow-sm">
+          <div className="w-1.5 h-1.5 rounded-none bg-green-500 animate-pulse" />
+          <span className="text-[9px] font-black text-gray-900 uppercase tracking-widest">Live</span>
         </div>
       </div>
     </div>
