@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { HiOutlineFolderOpen, HiOutlineSaveAs, HiOutlineDownload, HiOutlineCubeTransparent } from 'react-icons/hi';
+import { Link, useNavigate } from 'react-router-dom';
+import { HiOutlineFolderOpen, HiOutlineSaveAs, HiOutlineDownload, HiOutlineCubeTransparent, HiOutlineArrowLeft } from 'react-icons/hi';
 import { VscHistory, VscEdit } from 'react-icons/vsc';
 
 const Navbar = ({ onBack, backTo }) => {
   const [activeMenu, setActiveMenu] = useState(null);
   const barRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handler = (e) => {
@@ -61,8 +62,33 @@ const Navbar = ({ onBack, backTo }) => {
       className="w-full h-9 bg-white border-b border-gray-200 flex items-stretch select-none z-50 flex-shrink-0 relative"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
+      {/* ── Navigation / Back Logic ── */}
+      {(onBack || backTo) && (
+        <div className="flex items-stretch border-r border-gray-100">
+           {onBack ? (
+             <button 
+               onClick={onBack}
+               className="px-4 flex items-center gap-2 hover:bg-gray-100 transition-colors border-r border-gray-100 group"
+               title="Return to Library"
+             >
+                <HiOutlineArrowLeft className="text-gray-400 group-hover:text-blue-600 transition-colors" size={14} />
+                <span className="text-[10px] font-bold text-gray-500 group-hover:text-gray-900 uppercase tracking-tighter">Exit</span>
+             </button>
+           ) : (
+             <button 
+               onClick={() => navigate(backTo || '/')}
+               className="px-4 flex items-center gap-2 hover:bg-gray-100 transition-colors border-r border-gray-100 group"
+               title="Back to Store"
+             >
+                <HiOutlineArrowLeft className="text-gray-400 group-hover:text-blue-600 transition-colors" size={14} />
+                <span className="text-[10px] font-bold text-gray-500 group-hover:text-gray-900 uppercase tracking-tighter">Exit</span>
+             </button>
+           )}
+        </div>
+      )}
+
       {/* ── VS Code Style Logo & Branding ── */}
-      <div className="flex items-center px-4 gap-4 border-r border-gray-100 bg-gray-50/30">
+      <div className="flex items-center px-4 gap-4 border-r border-gray-100 bg-gray-50/10">
         <div className="flex items-center gap-2.5">
            <Link to="/" className="w-4 h-4 bg-blue-600 flex items-center justify-center hover:scale-110 transition-transform">
              <span className="text-white font-bold text-[9px]">E</span>
@@ -98,7 +124,6 @@ const Navbar = ({ onBack, backTo }) => {
                       {item.icon && <span className="text-xs opacity-60 group-hover:opacity-100">{item.icon}</span>}
                       <span className="tracking-wide whitespace-nowrap">{item.label}</span>
                     </div>
-                    {/* Decorative keyboard shortcuts for VS Code feel */}
                     <span className="text-[8px] opacity-40 group-hover:opacity-60 ml-8 tracking-tighter">
                        {menu.label === 'File' && i === 1 ? 'CTRL+S' : ''}
                        {menu.label === 'Edit' && i === 0 ? 'CTRL+R' : ''}
@@ -114,14 +139,14 @@ const Navbar = ({ onBack, backTo }) => {
       {/* ── Active File / Project Name Indicator ── */}
       <div className="hidden md:flex flex-1 items-center justify-center pointer-events-none">
          <div className="px-3 py-0.5 bg-gray-50 border border-gray-100 rounded-none flex items-center gap-2">
-            <span className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em]">Active Model:</span>
-            <span className="text-[9px] font-semibold text-gray-700 uppercase tracking-widest">Jersey_High_Performance.glb</span>
+            <span className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em]">Active Workspace:</span>
+            <span className="text-[9px] font-semibold text-gray-700 uppercase tracking-widest">Jersey_Library_Context</span>
          </div>
       </div>
 
-      {/* ── System Status & Window Controls ── */}
+      {/* ── System Status ── */}
       <div className="ml-auto flex items-center gap-3 px-4">
-        <div className="hidden lg:flex items-center gap-3 pr-3 border-r border-gray-100">
+        <div className="hidden lg:flex items-center gap-3">
           <div className="flex flex-col items-end leading-none">
             <span className="text-[7px] font-bold text-gray-300 uppercase tracking-[0.2em]">Build</span>
             <span className="text-[8px] font-semibold text-gray-500 tracking-wider">v1.0.4-PRO</span>
@@ -131,15 +156,6 @@ const Navbar = ({ onBack, backTo }) => {
             <span className="text-[8px] font-bold text-green-600 uppercase">Live</span>
           </div>
         </div>
-
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="h-6 px-3 bg-gray-900 text-white hover:bg-red-600 transition-all text-[9px] font-bold uppercase tracking-widest flex items-center justify-center gap-2"
-          >
-            Exit Studio
-          </button>
-        )}
       </div>
     </div>
   );
