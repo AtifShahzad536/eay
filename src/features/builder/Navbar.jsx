@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { HiOutlineFolderOpen, HiOutlineSaveAs, HiOutlineDownload, HiOutlineCubeTransparent, HiOutlineArrowLeft } from 'react-icons/hi';
 import { VscHistory, VscEdit } from 'react-icons/vsc';
 
@@ -7,6 +7,7 @@ const Navbar = ({ onBack, backTo }) => {
   const [activeMenu, setActiveMenu] = useState(null);
   const barRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handler = (e) => {
@@ -56,36 +57,32 @@ const Navbar = ({ onBack, backTo }) => {
     }
   ];
 
+  // Helper to determine where the Exit button should go
+  const handleExit = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate(backTo || '/');
+    }
+  };
+
   return (
     <div
       ref={barRef}
       className="w-full h-9 bg-white border-b border-gray-200 flex items-stretch select-none z-50 flex-shrink-0 relative"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
-      {/* ── Navigation / Back Logic ── */}
-      {(onBack || backTo) && (
-        <div className="flex items-stretch border-r border-gray-100">
-           {onBack ? (
-             <button 
-               onClick={onBack}
-               className="px-4 flex items-center gap-2 hover:bg-gray-100 transition-colors border-r border-gray-100 group"
-               title="Return to Library"
-             >
-                <HiOutlineArrowLeft className="text-gray-400 group-hover:text-blue-600 transition-colors" size={14} />
-                <span className="text-[10px] font-bold text-gray-500 group-hover:text-gray-900 uppercase tracking-tighter">Exit</span>
-             </button>
-           ) : (
-             <button 
-               onClick={() => navigate(backTo || '/')}
-               className="px-4 flex items-center gap-2 hover:bg-gray-100 transition-colors border-r border-gray-100 group"
-               title="Back to Store"
-             >
-                <HiOutlineArrowLeft className="text-gray-400 group-hover:text-blue-600 transition-colors" size={14} />
-                <span className="text-[10px] font-bold text-gray-500 group-hover:text-gray-900 uppercase tracking-tighter">Exit</span>
-             </button>
-           )}
-        </div>
-      )}
+      {/* ── Navigation / Exit Logic (Always Shown) ── */}
+      <div className="flex items-stretch border-r border-gray-100">
+         <button 
+           onClick={handleExit}
+           className="px-4 flex items-center gap-2 hover:bg-gray-100 transition-colors border-r border-gray-100 group"
+           title={onBack ? "Return to Library" : "Exit to Store"}
+         >
+            <HiOutlineArrowLeft className="text-gray-400 group-hover:text-blue-600 transition-colors" size={14} />
+            <span className="text-[10px] font-bold text-gray-500 group-hover:text-gray-900 uppercase tracking-tighter">Exit</span>
+         </button>
+      </div>
 
       {/* ── VS Code Style Logo & Branding ── */}
       <div className="flex items-center px-4 gap-4 border-r border-gray-100 bg-gray-50/10">
@@ -140,7 +137,9 @@ const Navbar = ({ onBack, backTo }) => {
       <div className="hidden md:flex flex-1 items-center justify-center pointer-events-none">
          <div className="px-3 py-0.5 bg-gray-50 border border-gray-100 rounded-none flex items-center gap-2">
             <span className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em]">Active Workspace:</span>
-            <span className="text-[9px] font-semibold text-gray-700 uppercase tracking-widest">Jersey_Library_Context</span>
+            <span className="text-[9px] font-semibold text-gray-700 uppercase tracking-widest">
+               {location.pathname.includes('/builder/') ? 'Jersey_Library_Context' : 'Studio_Entry_Context'}
+            </span>
          </div>
       </div>
 
