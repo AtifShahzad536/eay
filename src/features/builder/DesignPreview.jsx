@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment, Center, ContactShadows } from '@react-three/drei';
+import { useGLTF, Environment, Center, ContactShadows, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
 function Model({ url, mapping, colors, pattern, finish, mouseFollow }) {
@@ -156,6 +156,16 @@ function Model({ url, mapping, colors, pattern, finish, mouseFollow }) {
   );
 }
 
+const CardLoader = () => (
+  <div className="flex flex-col items-center justify-center gap-3 animate-pulse">
+    <div className="relative">
+      <div className="w-8 h-8 border-2 border-gray-100 rounded-full" />
+      <div className="absolute top-0 left-0 w-8 h-8 border-2 border-t-blue-500 rounded-full animate-spin" />
+    </div>
+    <span className="text-[7px] font-black text-gray-300 uppercase tracking-[0.3em]">Loading Model</span>
+  </div>
+);
+
 const DesignPreview = ({ modelUrl, mapping, primaryColor, primaryIsGrad, primaryColor2, secondaryColor, secondaryIsGrad, secondaryColor2, thirdColor, thirdIsGrad, thirdColor2, pattern, lighting, finish, mouseFollow }) => {
   const [isInView, setIsInView] = useState(false);
   const containerRef = useRef();
@@ -198,7 +208,7 @@ const DesignPreview = ({ modelUrl, mapping, primaryColor, primaryIsGrad, primary
         >
         <ambientLight intensity={lighting === 'night' ? 0.2 : 0.6} />
         <spotLight position={[10, 15, 10]} angle={0.3} penumbra={1} intensity={lighting === 'studio' ? 2 : 1} />
-        <Suspense fallback={null}>
+        <Suspense fallback={<Html center><CardLoader /></Html>}>
           <Center>
             <Model
               url={modelUrl} mapping={mapping} colors={colors}
@@ -210,9 +220,7 @@ const DesignPreview = ({ modelUrl, mapping, primaryColor, primaryIsGrad, primary
         </Suspense>
         </Canvas>
       ) : (
-        <div className="w-full h-full flex items-center justify-center">
-           <div className="w-8 h-8 border-2 border-gray-100 border-t-blue-500 rounded-full animate-spin" />
-        </div>
+        <CardLoader />
       )}
     </div>
   );
