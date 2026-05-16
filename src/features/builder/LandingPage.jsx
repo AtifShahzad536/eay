@@ -6,7 +6,7 @@ import { VscSymbolColor } from 'react-icons/vsc';
 
 const ColorGrid = ({ label, selected, onSelect, isGrad, onToggleGrad, selected2, onSelect2 }) => (
   <div className="flex flex-col gap-6 p-6 bg-white rounded-none border border-gray-900 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all group h-full">
-    <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+    <div className="flex flex-col gap-4 border-b border-gray-100 pb-4">
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-black text-gray-900 uppercase tracking-[0.3em]">{label}</h3>
         <div className="flex items-center gap-2">
@@ -14,9 +14,9 @@ const ColorGrid = ({ label, selected, onSelect, isGrad, onToggleGrad, selected2,
           <span className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">{isGrad ? 'Dual Tone Map' : 'Monochrome Tone'}</span>
         </div>
       </div>
-      <div className="flex border border-gray-900 p-0.5 bg-gray-50 rounded-none">
-        <button onClick={() => isGrad && onToggleGrad()} className={`px-3 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${!isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Solid</button>
-        <button onClick={() => !isGrad && onToggleGrad()} className={`px-3 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Grad</button>
+      <div className="flex border border-gray-900 p-0.5 bg-gray-50 rounded-none w-fit">
+        <button onClick={() => isGrad && onToggleGrad()} className={`px-4 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${!isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Solid</button>
+        <button onClick={() => !isGrad && onToggleGrad()} className={`px-4 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Grad</button>
       </div>
     </div>
 
@@ -232,11 +232,11 @@ const LandingPage = ({
               <label className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Designer Presets</label>
               <div className="grid grid-cols-1 gap-2">
                 {themes.map(t => (
-                  <button key={t.name} onClick={() => applyTheme(t)} className="flex items-center justify-between px-4 py-3 bg-white border border-gray-100 rounded-xl hover:border-blue-500 transition-all group shadow-sm">
-                    <span className="text-[9px] font-black text-gray-900 uppercase tracking-widest group-hover:text-[#ccff00]">{t.name}</span>
+                  <button key={t.name} onClick={() => applyTheme(t)} className="flex items-center justify-between px-4 py-3 bg-white border border-gray-900 rounded-none hover:bg-gray-900 transition-all group shadow-sm">
+                    <span className="text-[9px] font-black text-gray-900 uppercase tracking-widest group-hover:text-white">{t.name}</span>
                     <div className="flex -space-x-1.5">
-                      <div className="w-3.5 h-3.5 rounded-full border-2 border-white" style={{ backgroundColor: t.p }} />
-                      <div className="w-3.5 h-3.5 rounded-full border-2 border-white" style={{ backgroundColor: t.s }} />
+                      <div className="w-3.5 h-3.5 rounded-none border-2 border-white" style={{ backgroundColor: t.p }} />
+                      <div className="w-3.5 h-3.5 rounded-none border-2 border-white" style={{ backgroundColor: t.s }} />
                     </div>
                   </button>
                 ))}
@@ -251,7 +251,7 @@ const LandingPage = ({
               <div className="h-px w-full bg-gray-100" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-50/30 p-8 rounded-none border border-gray-900 shadow-[0_20px_50px_rgba(0,0,0,0.01)]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50/30 p-6 rounded-none border border-gray-900 shadow-[0_20px_50px_rgba(0,0,0,0.01)]">
               <ColorGrid label="Identity" selected={primaryColor} onSelect={setPrimaryColor} isGrad={primaryIsGrad} onToggleGrad={() => setPrimaryIsGrad(!primaryIsGrad)} selected2={primaryColor2} onSelect2={setPrimaryColor2} />
               <ColorGrid label="Secondary" selected={secondaryColor} onSelect={setSecondaryColor} isGrad={secondaryIsGrad} onToggleGrad={() => setSecondaryIsGrad(!secondaryIsGrad)} selected2={secondaryColor2} onSelect2={setSecondaryColor2} />
               <ColorGrid label="Technical" selected={thirdColor} onSelect={setThirdColor} isGrad={thirdIsGrad} onToggleGrad={() => setThirdIsGrad(!thirdIsGrad)} selected2={thirdColor2} onSelect2={setThirdColor2} />
