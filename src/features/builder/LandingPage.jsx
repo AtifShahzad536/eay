@@ -15,8 +15,8 @@ const ColorGrid = ({ label, selected, onSelect, isGrad, onToggleGrad, selected2,
         </div>
       </div>
       <div className="flex border border-gray-900 p-0.5 bg-gray-50 rounded-none w-fit">
-        <button onClick={() => isGrad && onToggleGrad()} className={`px-4 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${!isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Solid</button>
-        <button onClick={() => !isGrad && onToggleGrad()} className={`px-4 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Grad</button>
+        <button onClick={() => isGrad && onToggleGrad()} className={`px-4 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${!isGrad ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-gray-400 hover:text-gray-900'}`}>Solid</button>
+        <button onClick={() => !isGrad && onToggleGrad()} className={`px-4 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${isGrad ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-gray-400 hover:text-gray-900'}`}>Grad</button>
       </div>
     </div>
 
@@ -50,7 +50,7 @@ const ColorGrid = ({ label, selected, onSelect, isGrad, onToggleGrad, selected2,
             <button 
               key={i} 
               onClick={() => onSelect(c.hex)} 
-              className={`w-full aspect-square rounded-none border transition-all hover:scale-110 ${selected === c.hex ? 'border-gray-900 scale-105 z-10' : 'border-transparent'}`} 
+              className={`w-full aspect-square rounded-none border transition-all hover:scale-110 ${selected === c.hex ? 'border-blue-600 scale-105 z-10 shadow-md shadow-blue-500/20' : 'border-transparent'}`} 
               style={{ backgroundColor: c.hex }} 
             />
           ))}
@@ -139,11 +139,11 @@ const LandingPage = ({
         {/* ── 01. ELITE HERO ── */}
         <div className="flex flex-col mb-32">
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-10 h-[2px] bg-gray-900" />
+            <div className="w-10 h-[2px] bg-blue-600" />
             <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">EAY Studio Edition</span>
           </div>
           <h1 className="text-7xl md:text-[7rem] font-black tracking-tighter leading-[0.85] uppercase">
-            The <span className="serif-italic text-gray-900 normal-case lowercase tracking-normal">Elite</span> <br />
+            The <span className="serif-italic text-blue-600 normal-case lowercase tracking-normal">Elite</span> <br />
             Configurator
           </h1>
         </div>
@@ -164,7 +164,7 @@ const LandingPage = ({
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   {['none', 'carbon', 'camo', 'dots'].map(p => (
-                    <button key={p} onClick={() => setGlobalPattern(p === 'none' ? null : p)} className={`py-2.5 rounded-none border border-gray-900 text-[8px] font-black uppercase tracking-widest transition-all ${globalPattern === p || (p === 'none' && !globalPattern) ? 'bg-gray-900 text-white' : 'bg-white text-gray-900 hover:bg-gray-900 hover:text-white'}`}>{p}</button>
+                    <button key={p} onClick={() => setGlobalPattern(p === 'none' ? null : p)} className={`py-2.5 rounded-none border border-gray-900 text-[8px] font-black uppercase tracking-widest transition-all ${globalPattern === p || (p === 'none' && !globalPattern) ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/10' : 'bg-white text-gray-900 border-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600'}`}>{p}</button>
                   ))}
                 </div>
               </div>
@@ -175,7 +175,7 @@ const LandingPage = ({
                 </label>
                 <div className="flex flex-col gap-2">
                   {['matte', 'gloss', 'metallic'].map(f => (
-                    <button key={f} onClick={() => setMaterialFinish(f)} className={`w-full py-2.5 rounded-none border border-gray-900 text-[8px] font-black uppercase tracking-widest transition-all ${materialFinish === f ? 'bg-gray-900 text-white' : 'bg-white text-gray-900 hover:bg-gray-900 hover:text-white'}`}>{f}</button>
+                    <button key={f} onClick={() => setMaterialFinish(f)} className={`w-full py-2.5 rounded-none border border-gray-900 text-[8px] font-black uppercase tracking-widest transition-all ${materialFinish === f ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/10' : 'bg-white text-gray-900 border-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600'}`}>{f}</button>
                   ))}
                 </div>
               </div>
@@ -186,12 +186,12 @@ const LandingPage = ({
                 </label>
                 <div className="flex gap-2">
                   {['city', 'studio', 'night'].map(l => (
-                    <button key={l} onClick={() => setLightingPreset(l)} className={`flex-1 py-2 rounded-none border border-gray-900 text-[8px] font-black uppercase tracking-widest transition-all ${lightingPreset === l ? 'bg-gray-900 text-white' : 'bg-white text-gray-900 hover:bg-gray-900 hover:text-white'}`}>{l}</button>
+                    <button key={l} onClick={() => setLightingPreset(l)} className={`flex-1 py-2 rounded-none border border-gray-900 text-[8px] font-black uppercase tracking-widest transition-all ${lightingPreset === l ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/10' : 'bg-white text-gray-900 border-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600'}`}>{l}</button>
                   ))}
                 </div>
               </div>
 
-              <button onClick={() => setMouseFollow(!mouseFollow)} className={`w-full py-4 rounded-none text-[9px] font-black uppercase tracking-widest border border-gray-900 transition-all flex items-center justify-center gap-3 ${mouseFollow ? 'bg-gray-900 text-white shadow-xl shadow-gray-900/10' : 'bg-white text-gray-400 hover:bg-gray-900 hover:text-white'}`}>
+              <button onClick={() => setMouseFollow(!mouseFollow)} className={`w-full py-4 rounded-none text-[9px] font-black uppercase tracking-widest border transition-all flex items-center justify-center gap-3 ${mouseFollow ? 'bg-blue-600 text-white border-blue-600 shadow-xl shadow-blue-500/20' : 'bg-white text-gray-400 border-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600'}`}>
                 <div className={`w-1.5 h-1.5 rounded-none ${mouseFollow ? 'bg-white animate-pulse' : 'bg-gray-200'}`} />
                 360 Follow: {mouseFollow ? 'ON' : 'OFF'}
               </button>
@@ -263,7 +263,7 @@ const LandingPage = ({
         <div className="flex flex-col gap-16">
           <div className="flex items-end justify-between border-b border-gray-100 pb-10">
             <div className="flex flex-col gap-4">
-              <span className="text-[10px] font-black text-gray-900 uppercase tracking-[0.4em]">03 / Elite Library</span>
+              <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em]">03 / Elite Library</span>
               <h2 className="text-5xl font-black uppercase tracking-tighter">Choose Basis</h2>
             </div>
             {comparing.length > 0 && (
@@ -307,8 +307,8 @@ const LandingPage = ({
 
                 <div className="flex flex-col gap-1 px-1">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-[15px] font-bold text-gray-900 uppercase tracking-tight group-hover:text-gray-900 transition-colors">{design.name.split(' / ')[0]}</h3>
-                    <div className="w-1.5 h-1.5 rounded-none bg-gray-200 group-hover:bg-gray-900 transition-colors" />
+                    <h3 className="text-[15px] font-bold text-gray-900 uppercase tracking-tight group-hover:text-blue-600 transition-colors">{design.name.split(' / ')[0]}</h3>
+                    <div className="w-1.5 h-1.5 rounded-none bg-gray-200 group-hover:bg-blue-600 transition-colors" />
                   </div>
                   <span className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.2em]">{design.name.split(' / ')[1]}</span>
                 </div>
