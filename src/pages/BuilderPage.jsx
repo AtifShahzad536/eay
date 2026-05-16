@@ -86,7 +86,7 @@ export const BuilderPage = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`min-h-screen flex flex-col bg-white ${isBuilderView ? 'h-screen overflow-hidden' : ''}`}
+      className={`min-h-[100dvh] flex flex-col bg-white ${isBuilderView ? 'h-[100dvh] overflow-hidden' : ''}`}
     >
       <AnimatePresence mode="wait">
 
@@ -143,7 +143,7 @@ export const BuilderPage = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="flex-1 flex flex-col h-full overflow-hidden"
+            className="flex-1 flex flex-col h-full min-h-0 overflow-hidden"
           >
             <Navbar onBack={handleBackToLanding} backTo={fromPage} />
             <div className="flex-1 overflow-hidden">

@@ -72,8 +72,10 @@ const MeshProperties = ({ state, updateProp, accent }) => {
   const toggleSection = (id) => {
     setOpenSections(prev => {
       if (prev.includes(id)) return prev.filter(s => s !== id);
+      // On mobile, only one section open to save space. On desktop, allow 2.
+      const limit = typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 2;
       const next = [...prev, id];
-      return next.length > 2 ? next.slice(1) : next;
+      return next.length > limit ? next.slice(1) : next;
     });
   };
 
@@ -798,15 +800,15 @@ const RightPanel = ({
   ];
 
   return (
-    <div className="flex flex-1 md:flex-none w-full md:w-[420px] h-full flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-200 bg-white flex-col z-50 relative">
+    <div className="flex flex-1 md:flex-none w-full md:w-[420px] h-auto md:h-full flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-200 bg-white flex-col z-50 relative overflow-hidden min-h-0">
 
       {/* ── Top Main Tabs ── */}
-      <div className="flex border-b border-gray-200 bg-gray-50 flex-shrink-0">
+      <div className="flex border-b border-gray-200 bg-gray-50 flex-shrink-0 overflow-x-auto no-scrollbar scroll-smooth">
         {mainTabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex-1 py-3 px-1 flex flex-col items-center gap-1.5 transition-all relative cursor-pointer
+            className={`flex-1 min-w-[85px] md:min-w-0 py-3 px-1 flex flex-col items-center gap-1.5 transition-all relative cursor-pointer flex-shrink-0
               ${activeTab === tab.id ? 'text-[#00b0f0] bg-white' : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'}`}
           >
             <span className="text-lg">{tab.icon}</span>
@@ -835,7 +837,7 @@ const RightPanel = ({
       </div>
 
       {/* ── Content Area ── */}
-      <div className="flex-1 bg-gray-50 overflow-y-auto right-scroll" data-lenis-prevent>
+      <div className="flex-1 bg-gray-50 overflow-y-auto right-scroll overscroll-contain" data-lenis-prevent>
         {activeTab === 'colors' ? (
           <MeshProperties
             state={meshStates[activeMesh]}

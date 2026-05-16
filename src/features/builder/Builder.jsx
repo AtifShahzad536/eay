@@ -131,7 +131,7 @@ const Builder = () => {
   if (!design) return <div className="p-20 text-center font-bold text-gray-400">Loading Design...</div>;
 
   return (
-    <div className="flex-1 flex flex-col md:flex-row bg-white relative h-full overflow-hidden">
+    <div className="flex-1 flex flex-col md:flex-row bg-white relative h-full min-h-0 overflow-hidden">
       <LeftPanel
         modelUrl={design.modelUrl}
         meshes={meshes}
