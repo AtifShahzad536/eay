@@ -101,12 +101,15 @@ const Navbar = ({ onBack, backTo }) => {
             </button>
 
             {activeMenu === menu.label && (
-              <div className={`absolute top-full ${menu.label === 'Edit' ? 'right-0 sm:left-0' : 'left-0'} mt-0 w-max min-w-[200px] bg-white border border-gray-900 rounded-none shadow-2xl z-50 py-1.5 fade-up overflow-hidden`}>
+              <div className={`absolute top-full ${menu.label === 'Edit' ? 'right-[-20px] sm:left-1/2 sm:-translate-x-1/2' : 'left-1/2 -translate-x-1/2'} mt-2 w-max min-w-[200px] bg-white border border-gray-900 rounded-none shadow-2xl z-50 py-1.5 fade-up`}>
+                {/* Triangular Caret */}
+                <div className={`absolute -top-[5px] ${menu.label === 'Edit' ? 'right-[35px] sm:left-1/2 sm:-translate-x-1/2' : 'left-1/2 -translate-x-1/2'} w-2 h-2 bg-white rotate-45 border-l border-t border-gray-900`} />
+                
                 {menu.items.map((item, i) => (
                   <button
                     key={i}
                     onClick={() => { item.action(); setActiveMenu(null); }}
-                    className="w-full text-left px-5 py-3 text-[10px] font-black text-gray-700 hover:text-blue-600 flex items-center justify-between group transition-colors duration-100"
+                    className="w-full text-left px-5 py-3 text-[10px] font-black text-gray-700 hover:text-blue-600 flex items-center justify-between group transition-colors duration-100 relative bg-white"
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-sm opacity-50 group-hover:opacity-100">{item.icon}</span>
