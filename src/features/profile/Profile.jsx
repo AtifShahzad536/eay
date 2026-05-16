@@ -68,7 +68,7 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/25 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/25 backdrop-blur-sm z-[105]"
           />
 
           {/* Full-height panel */}
@@ -78,14 +78,14 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 280, damping: 28 }}
-            className="fixed top-0 right-0 h-full w-full max-w-[900px] bg-[#F8F9FF] z-50 flex shadow-2xl shadow-indigo-100/60 overflow-hidden"
+            className="fixed top-0 right-0 h-full w-full max-w-[900px] bg-[#F8F9FF] z-[110] flex flex-row shadow-2xl shadow-indigo-100/60 overflow-hidden"
           >
             {/* ─── LEFT SIDEBAR ─────────────────────────────── */}
-            <div className="w-[240px] min-w-[240px] bg-white border-r border-gray-100 flex flex-col py-8 px-5">
+            <div className="w-[76px] md:w-[240px] min-w-[76px] md:min-w-[240px] bg-white border-r border-gray-100 flex flex-col py-6 md:py-8 px-2 md:px-5 shrink-0 h-full overflow-y-auto custom-scrollbar">
               {/* Close btn */}
               <button
                 onClick={onClose}
-                className="self-end w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-500 transition-all mb-6"
+                className="self-center md:self-end w-10 h-10 md:w-9 md:h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-red-50 hover:text-red-500 transition-all mb-6"
               >
                 <X size={18} />
               </button>
@@ -93,32 +93,35 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
               {/* Avatar */}
               <div className="flex flex-col items-center mb-8">
                 <div className="relative">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center shadow-lg shadow-indigo-200">
-                    <User size={36} className="text-white" />
+                  <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center shadow-lg shadow-indigo-200">
+                    <User size={22} className="text-white md:hidden" />
+                    <User size={36} className="text-white hidden md:block" />
                   </div>
-                  <button className="absolute -bottom-1 -right-1 w-7 h-7 bg-white rounded-full border-2 border-indigo-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-50 transition-colors shadow-sm">
-                    <Camera size={13} />
+                  <button className="absolute -bottom-1 -right-1 w-5 h-5 md:w-7 md:h-7 bg-white rounded-full border-2 border-indigo-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-50 transition-colors shadow-sm">
+                    <Camera size={10} className="md:hidden" />
+                    <Camera size={13} className="hidden md:block" />
                   </button>
                 </div>
-                <p className="mt-4 text-slate-800 text-lg">John Doe</p>
-                <p className="text-sm text-slate-400 font-medium">john.doe@email.com</p>
+                <p className="hidden md:block mt-4 text-slate-800 text-lg">John Doe</p>
+                <p className="hidden md:block text-sm text-slate-400 font-medium">john.doe@email.com</p>
               </div>
 
               {/* Nav */}
-              <nav className="flex flex-col gap-1 flex-1">
+              <nav className="flex flex-col gap-2 md:gap-1 flex-1">
                 {NAV_ITEMS.map(({ key, label, icon: Icon }) => (
                   <button
                     key={key}
                     onClick={() => setActiveTab(key)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all ${
+                    title={label}
+                    className={`flex items-center justify-center md:justify-start gap-0 md:gap-3 p-3 md:px-4 md:py-3 rounded-xl text-sm transition-all ${
                       activeTab === key
                         ? 'bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white shadow-lg shadow-indigo-200/50'
                         : 'text-slate-500 hover:bg-gray-50 hover:text-slate-800'
                     }`}
                   >
-                    <Icon size={17} />
-                    {label}
-                    {activeTab !== key && <ChevronRight size={14} className="ml-auto opacity-40" />}
+                    <Icon className="w-5 h-5 md:w-[17px] md:h-[17px]" />
+                    <span className="hidden md:inline">{label}</span>
+                    {activeTab !== key && <ChevronRight size={14} className="hidden md:block ml-auto opacity-40" />}
                   </button>
                 ))}
               </nav>
@@ -126,20 +129,21 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
               {/* Logout */}
               <button 
                 onClick={onLogout}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-colors mt-4"
+                title="Logout"
+                className="flex items-center justify-center md:justify-start gap-0 md:gap-3 p-3 md:px-4 md:py-3 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-colors mt-4"
               >
-                <LogOut size={17} />
-                Logout
+                <LogOut className="w-5 h-5 md:w-[17px] md:h-[17px]" />
+                <span className="hidden md:inline">Logout</span>
               </button>
             </div>
 
             {/* ─── MAIN CONTENT ─────────────────────────────── */}
-            <div className="flex-1 overflow-y-auto px-8 py-8 custom-scrollbar" data-lenis-prevent>
+            <div className="flex-1 overflow-y-auto px-5 md:px-8 py-6 md:py-8 custom-scrollbar" data-lenis-prevent>
 
               {/* Page Header */}
-              <div className="mb-8">
-                <h1 className="text-3xl text-slate-800">My Account</h1>
-                <p className="text-slate-400 font-medium mt-1">Manage your profile and orders</p>
+              <div className="mb-6 md:mb-8">
+                <h1 className="text-2xl md:text-3xl text-slate-800">My Account</h1>
+                <p className="text-sm md:text-base text-slate-400 font-medium mt-1">Manage your profile and orders</p>
               </div>
 
               {/* ── PROFILE TAB ── */}
@@ -149,8 +153,8 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm"
                 >
-                  <h2 className="text-xl text-slate-800 mb-6">Profile Information</h2>
-                  <div className="grid grid-cols-2 gap-5">
+                  <h2 className="text-xl text-slate-800 mb-4 md:mb-6">Profile Information</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                     {[
                       { label: 'First Name', value: 'John',               type: 'text' },
                       { label: 'Last Name',  value: 'Doe',                type: 'text' },
@@ -164,17 +168,17 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
                         <input
                           type={field.type}
                           defaultValue={field.value}
-                          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-5 py-3.5 text-slate-700 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-[#4F46E5] transition-all"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 md:px-5 py-2.5 md:py-3.5 text-slate-700 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-[#4F46E5] transition-all"
                         />
                       </div>
                     ))}
                   </div>
-                  <div className="mt-8 flex items-center gap-4">
-                    <button className={`${BTN.primary} !px-8 !py-3.5 text-sm flex items-center gap-2`}>
+                  <div className="mt-6 md:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4">
+                    <button className={`${BTN.primary} !px-4 md:!px-8 !py-3 md:!py-3.5 text-sm flex items-center justify-center gap-2`}>
                       <Save size={16} />
                       Save Changes
                     </button>
-                    <button className="px-8 py-3.5 rounded-lg text-sm text-slate-500 bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors">
+                    <button className="px-4 md:px-8 py-3 md:py-3.5 rounded-lg text-sm text-slate-500 bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors flex justify-center">
                       Cancel
                     </button>
                   </div>
@@ -194,7 +198,7 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
                     return (
                       <div
                         key={order.id}
-                        className="bg-white rounded-lg px-6 py-5 border border-gray-100 shadow-sm flex items-center justify-between hover:border-indigo-100 hover:shadow-md transition-all"
+                        className="bg-white rounded-lg px-4 md:px-6 py-4 md:py-5 border border-gray-100 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between hover:border-indigo-100 hover:shadow-md transition-all gap-4 sm:gap-0"
                       >
                         <div>
                           <p className="text-slate-800">Order {order.id}</p>
@@ -202,7 +206,7 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
                             {order.date} · {order.items} items
                           </p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 self-end sm:self-auto">
                           <span className={`text-lg text-[${COLORS.primary}]`}>
                             ${order.price.toFixed(2)}
                           </span>
@@ -225,7 +229,7 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <h2 className="text-xl text-slate-800 mb-6">Saved Designs</h2>
-                  <div className="grid grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {SAVED_DESIGNS.map((design) => (
                       <div
                         key={design.id}
@@ -266,7 +270,7 @@ export const Profile = ({ isOpen, onClose, onLogout }) => {
                     ].map((setting) => (
                       <div
                         key={setting.label}
-                        className="flex items-center justify-between p-5 rounded-lg border border-gray-100 bg-gray-50/50 hover:border-indigo-100 transition-colors"
+                        className="flex items-center justify-between p-4 md:p-5 rounded-lg border border-gray-100 bg-gray-50/50 hover:border-indigo-100 transition-colors"
                       >
                         <div>
                           <p className="text-slate-700 text-sm">{setting.label}</p>

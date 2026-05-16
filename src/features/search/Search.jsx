@@ -68,7 +68,7 @@ export const Search = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/30 backdrop-blur-md z-40"
+            className="fixed inset-0 bg-black/30 backdrop-blur-md z-[105]"
           />
 
           {/* Search Panel — slides down from top */}
@@ -78,7 +78,7 @@ export const Search = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-            className="fixed top-0 left-0 right-0 z-50 bg-white shadow-2xl shadow-indigo-100/50"
+            className="fixed top-0 left-0 right-0 z-[110] bg-white shadow-2xl shadow-indigo-100/50"
           >
             {/* Search Bar */}
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
@@ -175,7 +175,7 @@ export const Search = ({ isOpen, onClose }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="mt-6 pb-6 grid grid-cols-2 gap-8"
+                    className="mt-6 pb-6 grid grid-cols-1 sm:grid-cols-2 gap-8"
                   >
                     {/* Trending */}
                     <div>

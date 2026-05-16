@@ -53,7 +53,7 @@ export const Cart = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[105]"
           />
 
           {/* Slide-in Panel */}
@@ -63,7 +63,7 @@ export const Cart = ({ isOpen, onClose }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 h-full w-full max-w-[480px] bg-white z-50 flex flex-col shadow-2xl shadow-indigo-100/50"
+            className="fixed top-0 right-0 h-full w-full max-w-[480px] bg-white z-[110] flex flex-col shadow-2xl shadow-indigo-100/50"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-[#4F46E5]/5 to-[#7C3AED]/5">
