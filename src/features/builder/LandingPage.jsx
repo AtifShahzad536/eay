@@ -5,68 +5,93 @@ import { HiArrowRight, HiViewGrid, HiOutlineCube, HiOutlineLightningBolt, HiOutl
 import { VscSymbolColor } from 'react-icons/vsc';
 
 const ColorGrid = ({ label, selected, onSelect, isGrad, onToggleGrad, selected2, onSelect2 }) => (
-  <div className="flex flex-col gap-6 p-6 bg-white rounded-xl border border-gray-100 hover:shadow-xl hover:border-blue-500/20 transition-all group">
-    <div className="flex items-center justify-between border-b border-gray-50 pb-4">
+  <div className="flex flex-col gap-6 p-6 bg-white rounded-none border border-gray-900 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all group h-full">
+    <div className="flex items-center justify-between border-b border-gray-100 pb-4">
       <div className="flex flex-col gap-1">
-        <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-[0.3em]">{label}</h3>
-        <span className="text-[8px] font-bold text-gray-300 uppercase tracking-widest">{isGrad ? 'Gradient Map' : 'Solid Tone'}</span>
+        <h3 className="text-[11px] font-black text-gray-900 uppercase tracking-[0.3em]">{label}</h3>
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 bg-gray-900" />
+          <span className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">{isGrad ? 'Dual Tone Map' : 'Monochrome Tone'}</span>
+        </div>
       </div>
-      <div className="flex bg-gray-50 rounded-lg p-0.5 gap-0.5 border border-gray-100">
-        <button onClick={() => isGrad && onToggleGrad()} className={`px-2 py-1 rounded-md text-[7px] font-black uppercase tracking-widest transition-all ${!isGrad ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-400'}`}>Solid</button>
-        <button onClick={() => !isGrad && onToggleGrad()} className={`px-2 py-1 rounded-md text-[7px] font-black uppercase tracking-widest transition-all ${isGrad ? 'bg-white text-[#ccff00] shadow-sm' : 'text-gray-400'}`}>Grad</button>
+      <div className="flex border border-gray-900 p-0.5 bg-gray-50 rounded-none">
+        <button onClick={() => isGrad && onToggleGrad()} className={`px-3 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${!isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Solid</button>
+        <button onClick={() => !isGrad && onToggleGrad()} className={`px-3 py-1.5 rounded-none text-[8px] font-black uppercase tracking-widest transition-all ${isGrad ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-900'}`}>Grad</button>
       </div>
     </div>
 
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 flex-1">
       {/* Real-time Material Preview */}
-      <div className="relative group/swatch">
-        <div
-          className="h-16 w-full rounded-xl shadow-inner transition-all duration-500 overflow-hidden relative"
+      <div className="relative">
+        <div 
+          className="h-20 w-full rounded-none border border-gray-900 shadow-inner transition-all duration-500 overflow-hidden relative"
           style={{ background: isGrad ? `linear-gradient(to right, ${selected}, ${selected2})` : selected }}
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/swatch:opacity-100 transition-opacity">
-            <span className="text-[8px] font-black text-white uppercase tracking-widest bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm">Active {label}</span>
+          <div className="absolute bottom-2 left-3 flex flex-col">
+            <span className="text-[7px] font-black text-white/60 uppercase tracking-widest">Active Material</span>
+            <span className="text-[9px] font-black text-white uppercase tracking-widest">{selected.toUpperCase()} {isGrad ? `→ ${selected2.toUpperCase()}` : ''}</span>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <span className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Select Tone</span>
-          <div className="relative w-6 h-6 rounded-full overflow-hidden border border-gray-200 shadow-sm hover:scale-110 transition-transform">
-            <input type="color" value={selected} onChange={(e) => onSelect(e.target.value)} className="absolute inset-0 w-[150%] h-[150%] -top-[25%] -left-[25%] cursor-pointer border-none p-0" />
+          <div className="flex items-center gap-2">
+            <HiOutlineColorSwatch className="text-[10px] text-gray-400" />
+            <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">{isGrad ? 'Start Color' : 'Core Identity'}</span>
+          </div>
+          <div className="relative w-6 h-6 rounded-none border border-gray-900 overflow-hidden shadow-sm hover:scale-110 transition-transform">
+             <input type="color" value={selected} onChange={(e) => onSelect(e.target.value)} className="absolute inset-0 w-[150%] h-[150%] -top-[25%] -left-[25%] cursor-pointer border-none p-0" />
           </div>
         </div>
         <div className="grid grid-cols-8 gap-1.5">
           {colors.slice(0, 24).map((c, i) => (
-            <button
-              key={i}
-              onClick={() => onSelect(c.hex)}
-              className={`w-full aspect-square rounded-md border-2 transition-all hover:scale-110 ${selected === c.hex ? 'border-blue-500 shadow-md scale-105' : 'border-transparent'}`}
-              style={{ backgroundColor: c.hex }}
+            <button 
+              key={i} 
+              onClick={() => onSelect(c.hex)} 
+              className={`w-full aspect-square rounded-none border transition-all hover:scale-110 ${selected === c.hex ? 'border-gray-900 scale-105 z-10' : 'border-transparent'}`} 
+              style={{ backgroundColor: c.hex }} 
             />
           ))}
         </div>
       </div>
 
-      {isGrad && (
-        <div className="fade-up pt-2 flex flex-col gap-4 border-t border-gray-50 mt-2">
+      {isGrad ? (
+        <div className="fade-up pt-4 flex flex-col gap-4 border-t border-gray-100 mt-auto">
           <div className="flex items-center justify-between">
-            <span className="text-[8px] font-bold text-blue-400 uppercase tracking-widest">Transition Tone</span>
-            <div className="relative w-6 h-6 rounded-full overflow-hidden border border-gray-200 shadow-sm hover:scale-110 transition-transform">
-              <input type="color" value={selected2} onChange={(e) => onSelect2(e.target.value)} className="absolute inset-0 w-[150%] h-[150%] -top-[25%] -left-[25%] cursor-pointer border-none p-0" />
+            <div className="flex items-center gap-2">
+              <HiOutlineColorSwatch className="text-[10px] text-gray-400" />
+              <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Transition End</span>
+            </div>
+            <div className="relative w-6 h-6 rounded-none border border-gray-900 overflow-hidden shadow-sm hover:scale-110 transition-transform">
+               <input type="color" value={selected2} onChange={(e) => onSelect2(e.target.value)} className="absolute inset-0 w-[150%] h-[150%] -top-[25%] -left-[25%] cursor-pointer border-none p-0" />
             </div>
           </div>
           <div className="grid grid-cols-8 gap-1.5">
             {colors.slice(0, 24).map((c, i) => (
-              <button
-                key={i}
-                onClick={() => onSelect2(c.hex)}
-                className={`w-full aspect-square rounded-md border-2 transition-all hover:scale-110 ${selected2 === c.hex ? 'border-blue-500 shadow-md scale-105' : 'border-transparent'}`}
-                style={{ backgroundColor: c.hex }}
+              <button 
+                key={i} 
+                onClick={() => onSelect2(c.hex)} 
+                className={`w-full aspect-square rounded-none border transition-all hover:scale-110 ${selected2 === c.hex ? 'border-gray-900 scale-105 z-10' : 'border-transparent'}`} 
+                style={{ backgroundColor: c.hex }} 
               />
             ))}
+          </div>
+        </div>
+      ) : (
+        <div className="pt-4 border-t border-gray-100 mt-auto flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
+             <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Tonal Variations</span>
+             <div className="flex gap-1.5 h-12">
+                {[0.2, 0.4, 0.6, 0.8].map((op, idx) => (
+                  <div key={idx} className="flex-1 border border-gray-100" style={{ backgroundColor: selected, opacity: op }} />
+                ))}
+             </div>
+          </div>
+          <div className="p-3 bg-gray-50 border-l-2 border-gray-900 flex flex-col gap-1">
+             <span className="text-[7px] font-black text-gray-400 uppercase tracking-widest">Laboratory Note</span>
+             <p className="text-[9px] font-bold text-gray-600 leading-tight">Solid materials provide high durability and consistent UV resistance across all surface types.</p>
           </div>
         </div>
       )}
@@ -226,7 +251,7 @@ const LandingPage = ({
               <div className="h-px w-full bg-gray-100" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50/30 p-6 rounded-2xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.01)]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-50/30 p-8 rounded-none border border-gray-900 shadow-[0_20px_50px_rgba(0,0,0,0.01)]">
               <ColorGrid label="Identity" selected={primaryColor} onSelect={setPrimaryColor} isGrad={primaryIsGrad} onToggleGrad={() => setPrimaryIsGrad(!primaryIsGrad)} selected2={primaryColor2} onSelect2={setPrimaryColor2} />
               <ColorGrid label="Secondary" selected={secondaryColor} onSelect={setSecondaryColor} isGrad={secondaryIsGrad} onToggleGrad={() => setSecondaryIsGrad(!secondaryIsGrad)} selected2={secondaryColor2} onSelect2={setSecondaryColor2} />
               <ColorGrid label="Technical" selected={thirdColor} onSelect={setThirdColor} isGrad={thirdIsGrad} onToggleGrad={() => setThirdIsGrad(!thirdIsGrad)} selected2={thirdColor2} onSelect2={setThirdColor2} />
