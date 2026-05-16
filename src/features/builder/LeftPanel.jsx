@@ -115,17 +115,6 @@ const LeftPanel = ({
               })}
             </div>
           </div>
-          
-          <div className="opacity-40 pointer-events-none mt-2">
-             <div className="px-2 py-1 flex items-center gap-1 border-t border-gray-100 bg-white/30">
-                <HiOutlineChevronRight size={12} className="text-gray-400" />
-                <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wide">Materials</span>
-             </div>
-             <div className="px-2 py-1 flex items-center gap-1 border-t border-gray-100 bg-white/30">
-                <HiOutlineChevronRight size={12} className="text-gray-400" />
-                <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wide">Environment Map</span>
-             </div>
-          </div>
         </div>
 
         {/* Sidebar Status Footer */}
