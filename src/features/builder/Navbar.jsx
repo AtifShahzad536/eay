@@ -68,7 +68,7 @@ const Navbar = ({ onBack, backTo }) => {
   return (
     <div
       ref={barRef}
-      className="w-full h-9 bg-white border-b border-gray-200 flex items-stretch select-none z-50 flex-shrink-0 relative"
+      className="w-full h-9 bg-white border-b border-gray-200 flex items-stretch select-none z-[70] flex-shrink-0 relative"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
       {/* ── Navigation / Exit Logic (Always Shown) ── */}
@@ -86,10 +86,10 @@ const Navbar = ({ onBack, backTo }) => {
       {/* ── VS Code Style Logo & Branding ── */}
       <div className="flex items-center px-4 gap-4 border-r border-gray-100 bg-gray-50/10">
         <div className="flex items-center gap-2.5">
-           <Link to="/" className="w-4 h-4 bg-blue-600 flex items-center justify-center hover:scale-110 transition-transform">
+           <Link to="/" className="w-4 h-4 bg-blue-600 flex items-center justify-center hover:scale-110 transition-transform flex-shrink-0">
              <span className="text-white font-bold text-[9px]">E</span>
            </Link>
-           <span className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.1em] whitespace-nowrap">
+           <span className="hidden sm:inline text-[10px] font-bold text-gray-900 uppercase tracking-[0.1em] whitespace-nowrap">
              Elite <span className="text-blue-600">Studio</span>
            </span>
         </div>

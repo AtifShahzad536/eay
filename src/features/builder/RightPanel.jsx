@@ -600,7 +600,7 @@ const RightPanel = (props) => {
   ];
 
   return (
-    <div className="flex flex-1 md:flex-none w-full md:w-[420px] h-auto md:h-full flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 bg-white flex-col z-50 relative overflow-hidden min-h-0">
+    <div className="flex flex-1 md:flex-none w-full md:w-[420px] h-full flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 bg-white flex-col z-50 relative overflow-hidden min-h-0">
       <div className="flex border-b border-gray-100 bg-white flex-shrink-0 overflow-x-auto no-scrollbar scroll-smooth">
         {mainTabs.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex-1 min-w-[80px] md:min-w-0 py-4 px-1 flex flex-col items-center gap-2 transition-all relative cursor-pointer flex-shrink-0 rounded-none ${activeTab === tab.id ? 'text-blue-600 bg-white' : 'text-gray-400 hover:text-gray-900 hover:bg-gray-50'}`}>
@@ -624,18 +624,20 @@ const RightPanel = (props) => {
         <div className="px-2 py-1 rounded-none border border-green-200 bg-green-50 text-green-600 text-[8px] font-semibold tracking-widest uppercase">Live View</div>
       </div>
 
-      <div className="flex-1 bg-white overflow-y-auto right-scroll overscroll-contain" data-lenis-prevent>
-        {activeTab === 'colors' ? (
-          <MeshProperties state={props.meshStates[props.activeMesh]} updateProp={(prop, val) => props.updateMeshProp(props.activeMesh, prop, val)} />
-        ) : activeTab === 'names' ? (
-          <NamesNumbersTab {...props} />
-        ) : activeTab === 'logos' ? (
-          <LogosFlagsTab {...props} />
-        ) : activeTab === 'config' ? (
-          <StudioConfigTab {...props} />
-        ) : (
-          <CheckoutRosterTab roster={props.roster} setRoster={props.setRoster} />
-        )}
+      <div className="flex-1 relative min-h-0">
+        <div className="absolute inset-0 overflow-y-auto overflow-x-hidden touch-auto custom-scrollbar" data-lenis-prevent onWheel={(e) => e.stopPropagation()} style={{ WebkitOverflowScrolling: 'touch' }}>
+          {activeTab === 'colors' ? (
+            <MeshProperties state={props.meshStates[props.activeMesh]} updateProp={(prop, val) => props.updateMeshProp(props.activeMesh, prop, val)} />
+          ) : activeTab === 'names' ? (
+            <NamesNumbersTab {...props} />
+          ) : activeTab === 'logos' ? (
+            <LogosFlagsTab {...props} />
+          ) : activeTab === 'config' ? (
+            <StudioConfigTab {...props} />
+          ) : (
+            <CheckoutRosterTab roster={props.roster} setRoster={props.setRoster} />
+          )}
+        </div>
       </div>
 
       <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 flex items-center justify-between flex-shrink-0">
