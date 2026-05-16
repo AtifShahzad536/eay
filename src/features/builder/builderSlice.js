@@ -10,13 +10,13 @@ const initialState = {
   primaryIsGrad: false,
   primaryColor2: '#ffffff',
   
-  secondaryColor: '#111111',
+  secondaryColor: '#ffffff',
   secondaryIsGrad: false,
-  secondaryColor2: '#111111',
+  secondaryColor2: '#ffffff',
   
-  thirdColor: '#555555',
+  thirdColor: '#ffffff',
   thirdIsGrad: false,
-  thirdColor2: '#555555',
+  thirdColor2: '#ffffff',
   
   // Global Configs
   globalPattern: null, // 'carbon', 'camo', 'dots'
