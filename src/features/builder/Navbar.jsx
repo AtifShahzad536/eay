@@ -51,8 +51,7 @@ const Navbar = ({ onBack, backTo }) => {
     {
         label: 'View',
         items: [
-          { label: 'Toggle HUD', action: () => {} },
-          { label: 'Reset Camera', action: () => {} },
+          { label: 'Toggle HUD', action: () => window.dispatchEvent(new CustomEvent('eay:toggleHUD')) },
         ]
     }
   ];
