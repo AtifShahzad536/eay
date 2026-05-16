@@ -22,7 +22,7 @@ const initialState = {
   globalPattern: null, // 'carbon', 'camo', 'dots'
   lightingPreset: 'city',
   materialFinish: 'matte',
-  mouseFollow: true,
+  mouseFollow: false,
   
   // Model Specifics
   meshes: [],
