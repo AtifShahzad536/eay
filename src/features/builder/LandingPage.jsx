@@ -252,7 +252,7 @@ const LandingPage = ({
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-10 gap-y-20">
             {designs.map((design) => (
               <div key={design.id} className="group flex flex-col gap-6 cursor-pointer" onClick={() => onSelectDesign(design)}>
-                <div className={`aspect-[3.5/5] relative bg-transparent rounded-lg transition-all duration-700 overflow-hidden ${comparing.includes(design.id) ? 'ring-4 ring-blue-500 ring-offset-4' : 'group-hover:-translate-y-3'}`}>
+                <div className={`aspect-[3.5/5] relative bg-white rounded-none border border-gray-50 transition-all duration-700 overflow-hidden ${comparing.includes(design.id) ? 'ring-4 ring-gray-900 ring-offset-4' : 'group-hover:-translate-y-3 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] group-hover:border-gray-100'}`}>
                   <DesignPreview
                     modelUrl={design.modelUrl} mapping={design.mapping}
                     primaryColor={primaryColor} primaryIsGrad={primaryIsGrad} primaryColor2={primaryColor2}
@@ -272,7 +272,7 @@ const LandingPage = ({
                     <HiViewGrid size={18} />
                   </button>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                     <div className="flex items-center gap-2.5 bg-white text-gray-900 px-6 py-2.5 rounded-none shadow-xl font-black text-[9px] uppercase tracking-[0.2em] border border-gray-900 group-hover:bg-gray-900 group-hover:text-white transition-all duration-300">
                       Customize <HiArrowRight className="group-hover:translate-x-1 transition-transform" />
