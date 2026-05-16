@@ -5,7 +5,7 @@ import { HiArrowRight, HiViewGrid, HiOutlineCube, HiOutlineLightningBolt, HiOutl
 import { VscSymbolColor } from 'react-icons/vsc';
 
 const ColorGrid = ({ label, selected, onSelect, isGrad, onToggleGrad, selected2, onSelect2 }) => (
-  <div className="flex flex-col gap-6 p-6 bg-white rounded-none border border-gray-900 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all group h-full">
+  <div className="flex flex-col gap-4 sm:p-6 p-4 sm:p-6 bg-white rounded-none border border-gray-900 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all group h-full">
     <div className="flex flex-col gap-4 border-b border-gray-100 pb-4">
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-black text-gray-900 uppercase tracking-[0.3em]">{label}</h3>
@@ -20,7 +20,7 @@ const ColorGrid = ({ label, selected, onSelect, isGrad, onToggleGrad, selected2,
       </div>
     </div>
 
-    <div className="flex flex-col gap-6 flex-1">
+    <div className="flex flex-col gap-4 sm:p-6 flex-1">
       {/* Real-time Material Preview */}
       <div className="relative">
         <div 
@@ -134,7 +134,7 @@ const LandingPage = ({
         .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.05); }
       `}} />
 
-      <div className="max-w-[1600px] mx-auto px-8 py-16 relative">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 py-10 sm:py-16 relative">
 
         {/* ── 01. ELITE HERO ── */}
         <div className="flex flex-col mb-32">
@@ -142,7 +142,7 @@ const LandingPage = ({
             <div className="w-10 h-[2px] bg-blue-600" />
             <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">EAY Studio Edition</span>
           </div>
-          <h1 className="text-7xl md:text-[7rem] font-black tracking-tighter leading-[0.85] uppercase">
+          <h1 className="text-4xl sm:text-7xl md:text-[7rem] font-black tracking-tighter leading-[0.9] sm:leading-[0.85] uppercase">
             The <span className="serif-italic text-blue-600 normal-case lowercase tracking-normal">Elite</span> <br />
             Configurator
           </h1>
@@ -157,7 +157,7 @@ const LandingPage = ({
             </div>
 
             {/* Fabric & Finish Group */}
-            <div className="flex flex-col gap-8 p-6 rounded-none bg-gray-50 border border-gray-900 shadow-sm">
+            <div className="flex flex-col gap-6 sm:gap-8 p-4 sm:p-6 rounded-none bg-gray-50 border border-gray-900 shadow-sm">
               <div className="flex flex-col gap-4">
                 <label className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-gray-500">
                   <HiOutlineCube className="text-gray-900" /> Fabric Pattern
@@ -264,7 +264,7 @@ const LandingPage = ({
           <div className="flex items-end justify-between border-b border-gray-100 pb-10">
             <div className="flex flex-col gap-4">
               <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em]">03 / Elite Library</span>
-              <h2 className="text-5xl font-black uppercase tracking-tighter">Choose Basis</h2>
+              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tighter">Choose Basis</h2>
             </div>
             {comparing.length > 0 && (
               <div className="flex items-center gap-4 bg-blue-600 px-6 py-3 rounded-full text-white shadow-xl animate-fade-in mb-2">
