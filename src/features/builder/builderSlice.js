@@ -43,7 +43,20 @@ export const builderSlice = createSlice({
       state.view = action.payload;
     },
     setSelectedDesign: (state, action) => {
+      // 1. Keep persistent UI state
+      const { view, fromPage, refreshKey } = state;
+      
+      // 2. Clear current state (Resets colors, meshStates, decals, etc.)
+      Object.assign(state, initialState);
+      
+      // 3. Restore UI state and set new design
+      state.view = view;
+      state.fromPage = fromPage;
+      state.refreshKey = refreshKey;
       state.selectedDesign = action.payload;
+      
+      // 4. Ensure a fresh roster entry
+      state.roster = [{ id: Date.now(), name: '', number: '', size: 'L' }];
     },
     setPrimaryColor: (state, action) => {
       state.primaryColor = action.payload;
