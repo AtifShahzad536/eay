@@ -192,13 +192,13 @@ const LandingPage = ({
               </div>
 
               <button onClick={() => setMouseFollow(!mouseFollow)} className={`w-full py-4 rounded-none text-[9px] font-black uppercase tracking-widest border border-gray-900 transition-all flex items-center justify-center gap-3 ${mouseFollow ? 'bg-gray-900 text-white shadow-xl shadow-gray-900/10' : 'bg-white text-gray-400 hover:bg-gray-900 hover:text-white'}`}>
-                <div className={`w-1.5 h-1.5 rounded-full ${mouseFollow ? 'bg-white animate-pulse' : 'bg-gray-200'}`} />
+                <div className={`w-1.5 h-1.5 rounded-none ${mouseFollow ? 'bg-white animate-pulse' : 'bg-gray-200'}`} />
                 360 Follow: {mouseFollow ? 'ON' : 'OFF'}
               </button>
             </div>
 
             {/* Technical Specs Group (Fills empty space) */}
-            <div className="flex flex-col gap-6 p-6 rounded-xl bg-blue-600 text-white shadow-2xl shadow-blue-500/20">
+            <div className="flex flex-col gap-6 p-6 rounded-none bg-blue-600 text-white shadow-2xl shadow-blue-500/10 border border-white/10">
               <div className="flex items-center justify-between">
                 <span className="text-[9px] font-black uppercase tracking-[0.2em] opacity-60">Engine Specs</span>
                 <HiOutlineLightningBolt className="animate-pulse" />
@@ -219,9 +219,9 @@ const LandingPage = ({
               </div>
               <div className="mt-2 pt-4 border-t border-white/10 flex items-center gap-3">
                 <div className="flex -space-x-1">
-                  <div className="w-4 h-4 rounded-full border border-white/20" style={{ backgroundColor: primaryColor }} />
-                  <div className="w-4 h-4 rounded-full border border-white/20" style={{ backgroundColor: secondaryColor }} />
-                  <div className="w-4 h-4 rounded-full border border-white/20" style={{ backgroundColor: thirdColor }} />
+                  <div className="w-4 h-4 rounded-none border border-white/40" style={{ backgroundColor: primaryColor }} />
+                  <div className="w-4 h-4 rounded-none border border-white/40" style={{ backgroundColor: secondaryColor }} />
+                  <div className="w-4 h-4 rounded-none border border-white/40" style={{ backgroundColor: thirdColor }} />
                 </div>
                 <span className="text-[8px] font-bold uppercase tracking-widest opacity-60">Palette Sync</span>
               </div>
